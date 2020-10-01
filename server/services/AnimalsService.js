@@ -1,16 +1,20 @@
 import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
 
-class ValuesService {
+class AnimalsService {
+  async createMany(array) {
+    let data = await dbContext.Animals.insertMany(array);
+    return data;
+  }
   async findAll(query = {}) {
-    let values = await dbContext.Values.find(query).populate(
+    let values = await dbContext.Animals.find(query).populate(
       "creator",
       "name picture"
     );
     return values;
   }
   async findById(id) {
-    let value = await dbContext.Values.findById(id);
+    let value = await dbContext.Animals.findById(id);
     if (!value) {
       throw new BadRequest("Invalid Id");
     }
@@ -18,4 +22,4 @@ class ValuesService {
   }
 }
 
-export const valuesService = new ValuesService();
+export const animalsService = new AnimalsService();

@@ -1,29 +1,29 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
-import { valuesService } from "../services/ValuesService";
+import { animalsService } from "../services/AnimalsService.js";
 import auth0Provider from "@bcwdev/auth0provider";
 
-export class ValuesController extends BaseController {
+export class AnimalsController extends BaseController {
   constructor() {
-    super("api/values");
+    super("api/animals");
     this.router
       .get("", this.getAll)
+      .post("", this.createMany)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
-      .use(auth0Provider.getAuthorizedUserInfo)
-      .post("", this.create);
+      .use(auth0Provider.getAuthorizedUserInfo);
   }
   async getAll(req, res, next) {
     try {
-      return res.send(["value1", "value2"]);
+      let data = await animalsService.findAll(req.query);
+      return res.send(data);
     } catch (error) {
       next(error);
     }
   }
-  async create(req, res, next) {
+  async createMany(req, res, next) {
     try {
-      // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
-      req.body.creator = req.user.email;
-      res.send(req.body);
+      let data = await animalsService.createMany(req.body);
+      return res.status(201).send(data);
     } catch (error) {
       next(error);
     }
