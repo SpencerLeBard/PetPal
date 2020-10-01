@@ -25,8 +25,12 @@ export class AnimalsController extends BaseController {
   async editAnimal(req, res, next) {
     try {
       req.body.creatorEmail = req.userInfo.email.toLowerCase();
-      await animalsService.edit(req.params.id, req.body.creatorEmail, req.body);
-      return res.send("successfully Deleted");
+      let data = await animalsService.edit(
+        req.params.id,
+        req.body.creatorEmail,
+        req.body
+      );
+      return res.send(data);
     } catch (error) {
       next(error);
     }
@@ -47,10 +51,8 @@ export class AnimalsController extends BaseController {
   async deleteAnimal(req, res, next) {
     try {
       req.body.creatorEmail = req.userInfo.email.toLowerCase();
-      let data = await animalsService.deleteById(
-        req.params.id,
-        req.body.creatorEmail
-      );
+      await animalsService.deleteById(req.params.id, req.body.creatorEmail);
+      return res.send("Successfully Deleted!");
     } catch (error) {
       next(error);
     }
