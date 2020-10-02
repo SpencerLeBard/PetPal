@@ -16,7 +16,7 @@ class AnimalsService {
         values.length === 20 ? "/api/animals?page=" + (query.page + 1) : null,
       previous: query.page > 1 ? "/api/animals?page=" + (query.page - 1) : null,
     };
-    return animals;
+    return values;
   }
   async findById(id) {
     let value = await dbContext.Animals.findById(id);
