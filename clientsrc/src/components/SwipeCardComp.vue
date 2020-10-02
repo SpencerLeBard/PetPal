@@ -25,11 +25,7 @@ export default {
   data() {
     return {};
   },
-  computed: {
-    animals() {
-      return this.$store.state.animals;
-    },
-  },
+  computed: {},
   methods: {
     likePet() {},
   },

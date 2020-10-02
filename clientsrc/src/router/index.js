@@ -23,7 +23,7 @@ const routes = [
     beforeEnter: authGuard,
   },
   {
-    path: "/swipepage",
+    path: "/swipepage/:id",
     name: "Swipe",
     component: Swipe,
   },

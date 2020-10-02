@@ -60,7 +60,10 @@ export default new Vuex.Store({
     async getResource({ commit }, payload) {
       try {
         let res = await api.get(payload.path);
-        commit("setResource", { data: res.data, resource: payload.resource });
+        commit("setResource", {
+          data: res.data,
+          resource: payload.resource,
+        });
       } catch (error) {
         console.error(error);
       }

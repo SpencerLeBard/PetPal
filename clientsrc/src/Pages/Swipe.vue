@@ -6,7 +6,7 @@
       </div>
       <swipe-card-comp
         v-for="animal in animals"
-        :key="animal.id"
+        :key="animal"
         :animalProp="animal"
       />
       <div class="col-2">
@@ -28,13 +28,27 @@ export default {
       path: "animals",
       resource: "animals",
     });
+    this.methods.next();
   },
   computed: {
     animals() {
       return this.$store.state.animals;
     },
+    activeAnimal() {
+      return this.$store.state.activeAnimal;
+    },
   },
-  methods: {},
+  methods: {
+    next() {
+      let animals = this.$store.state.animals;
+      let activeAnimal = this.$store.state.activeAnimal;
+      if (activeAnimal == undefined) {
+        activeAnimal = animals[0];
+      }
+      animals.shift();
+      activeAnimal = animals[0];
+    },
+  },
   components: {
     SwipeCardComp,
   },
