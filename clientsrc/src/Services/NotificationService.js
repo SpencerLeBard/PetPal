@@ -42,4 +42,41 @@ export default class NotificationService {
       timerProgressBar: true,
     });
   }
+  static setupQuestions(title = "Default Toast", icon = "info") {
+    Swal.mixin({
+      input: "text",
+      confirmButtonText: "Next &rarr;",
+      showCancelButton: true,
+      progressSteps: ["1", "2", "3"],
+    })
+      .queue([
+        {
+          title: "Question 1",
+          text: "What is your name?",
+        },
+        "Would you like to adopt a cat or dog?",
+        "What is your zipcode?",
+      ])
+      .then((result) => {
+        if (result.value) {
+          const answers = JSON.stringify(result.value);
+          Swal.fire({
+            title: "All done!",
+            //   html: `
+            //   Your answers:
+            // <pre><code>${answers}</code></pre>
+            // `,
+            confirmButtonText: "Now Get Started!",
+          });
+          let data = {
+            name: answers[0],
+            preference: answers[1],
+            zip: answers[2],
+          };
+          console.log(data);
+          //NOTE DISPATCH TO STORE
+          // router.push({ name: "boards" })
+        }
+      });
+  }
 }
