@@ -42,14 +42,11 @@ export default {
   computed: {
     activeAnimal() {
       let res = this.$store.state.animals[0];
-      console.log(res);
       this.$store.state.activeAnimal = res;
       return this.$store.state.activeAnimal;
     },
   },
-  methods: {
-    likePet() {},
-  },
+  methods: {},
   components: {},
 };
 </script>
