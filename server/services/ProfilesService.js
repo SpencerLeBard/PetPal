@@ -37,8 +37,8 @@ function sanitizeBody(body) {
   let writable = {
     name: body.name,
     picture: body.picture,
-    hasOrg: body.hasOrg
-
+    hasOrg: body.hasOrg,
+    search: { city: body.city, state: body.state, zip: body.zip, dog: body.dog, cat: body.cat }
   };
   return writable;
 }
