@@ -134,7 +134,11 @@ export default {
     };
   },
 
-  computed: {},
+  computed: {
+    profile() {
+      return this.$store.state.profile;
+    },
+  },
   props: [""],
   components: {},
   methods: {
@@ -142,7 +146,12 @@ export default {
       this.question++;
     },
     getStarted() {
-      console.log(this.profileInfo);
+      this.$store.dispatch("edit", {
+        getPath: "profile",
+        path: "profile/" + this.profile.id,
+        data: this.profileInfo,
+        resource: "profile",
+      });
     },
   },
 };
