@@ -20,8 +20,9 @@
             textShadow: '1px 1px black',
           }"
         >
-          {{ this.activeAnimal.name }} - {{ this.activeAnimal.gender }},
-          {{ this.activeAnimal.age }}
+          {{ this.activeAnimal.name }}, {{ this.activeAnimal.age }}
+          <br />
+          {{ this.activeAnimal.gender }}
         </div>
       </div>
     </router-link>
