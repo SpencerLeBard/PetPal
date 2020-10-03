@@ -2,13 +2,15 @@ import Vue from "vue";
 import Vuex from "vuex";
 import router from "../router";
 import { api } from "./AxiosService.js";
-import ns from "./NotificationService.js";
+import ns from "../Services/NotificationService";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     profile: {},
+    animals: [],
+    activeAnimal: {},
   },
   mutations: {
     setProfile(state, profile) {
@@ -58,7 +60,10 @@ export default new Vuex.Store({
     async getResource({ commit }, payload) {
       try {
         let res = await api.get(payload.path);
-        commit("setResource", { data: res.data, resource: payload.resource });
+        commit("setResource", {
+          data: res.data,
+          resource: payload.resource,
+        });
       } catch (error) {
         console.error(error);
       }

@@ -17,6 +17,7 @@ const Profile = new Schema(
     picture: { type: String },
     search: searchSchema,
     hasOrg: { type: Boolean, default: false }
+
     // NOTE If you wish to add additional public properties for profiles do so here
   },
   { timestamps: true, toJSON: { virtuals: true } }

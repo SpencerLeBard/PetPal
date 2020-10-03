@@ -27,10 +27,18 @@ const fullSchema = new Schema({
   full: { type: String, default: null },
 });
 
-const contactSchema = new Schema({
-  email: { type: String, required: true, default: null },
-  phone: { type: String, required: true, default: null },
+const addressSchema = new Schema({
+  city: { type: String, default: null },
+  state: { type: String, default: null },
+  postcode: { type: String, default: null },
 });
+
+const contactSchema = new Schema({
+  email: { type: String, default: null },
+  phone: { type: String, default: null },
+  address: addressSchema,
+});
+
 const environmentSchema = new Schema({
   children: { type: Boolean, default: false },
 });
