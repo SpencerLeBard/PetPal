@@ -37,8 +37,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.bgPetImg {
-  background-image: url();
-}
-</style>
+<style scoped></style>

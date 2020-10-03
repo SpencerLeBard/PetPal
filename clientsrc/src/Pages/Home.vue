@@ -65,7 +65,6 @@ export default {
 .getStarted {
   height: 93vh;
   width: 100vw;
-  /* background: url(https://images.unsplash.com/photo-1554079576-2c60630c343a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=673&q=800); */
   background-size: cover;
   background-position: center;
 }
