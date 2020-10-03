@@ -17,7 +17,7 @@ const orgContactSchema = new Schema({
 
 const OrgProfile = new Schema(
     {
-        profileId: { type: ObjectId, ref: 'Profile', required: true },
+        profileId: { type: ObjectId, ref: 'Profile' },
         name: { type: String, required: true },
         picture: { type: String },
         orglocation: orgLocationSchema,

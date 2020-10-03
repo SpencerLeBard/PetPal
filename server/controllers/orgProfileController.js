@@ -1,6 +1,6 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
-import { orgProService } from "../services/orgProfileService";
+import { orgProService } from "../services/OrgProfileService";
 import auth0Provider from "@bcwdev/auth0provider"
 
 export class OrgProfileController extends BaseController {
@@ -26,7 +26,7 @@ export class OrgProfileController extends BaseController {
 
   async getOrgProfile(req, res, next) {
     try {
-      let orgProfile = await orgProService.getOrgProfile(req.userInfo);
+      let orgProfile = await orgProService.getOrgProfile(req.userInfo._id);
       res.send(orgProfile)
     } catch (error) {
       next(error)
@@ -44,7 +44,7 @@ export class OrgProfileController extends BaseController {
 
   async createOrg(req, res, next) {
     try {
-      req.body.creatorId = req.userInfo.id
+      req.body.profileId = req.userInfo._id
       let data = await orgProService.createOrg(req.body)
       return res.status(201).send(data)
     } catch (error) {
@@ -54,8 +54,8 @@ export class OrgProfileController extends BaseController {
 
   async editOrg(req, res, next) {
     try {
-      req.body.creatorId = req.user.sub;
-      let data = await orgProService.edit(req.userInfo.email, req.body)
+      req.body.creatorId = req.user.id;
+      let data = await orgProService.edit(req.userInfo.id, req.body)
       res.send(data)
     } catch (error) {
       next(error)

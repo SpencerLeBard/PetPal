@@ -3,17 +3,17 @@ import { BadRequest } from "../utils/Errors"
 
 class OrgProfileService {
 
-    async getAll(query = {}) {
+    async findAll(query = {}) {
         let all = await dbContext.OrgProfile.find(query);
         return all;
     }
 
-    async getOrgProfile(userEmail) {
-        return await dbContext.OrgProfile.find({ creatorEmail: userEmail.id })
+    async getOrgProfile(userInfo) {
+        return await dbContext.OrgProfile.find({ _id: userInfo })
     }
 
     async getAllByOrg(orgId) {
-        let data = await dbContext.OrgProfile.find({ organization_id: orgId })
+        let data = await dbContext.OrgProfile.find({ _id: orgId })
     }
 
     async createOrg(rawData) {
@@ -21,10 +21,10 @@ class OrgProfileService {
         return data
     }
 
-    async edit(userEmail, update) {
+    async edit(userId, update) {
         let org = await this.getOrgProfile(userEmail)
         let data = null
-        if (org.creatorEmail == userEmail) {
+        if (org.id == userId) {
             data = await dbContext.OrgProfile.findOneAndUpdate({ creatorEmail: userEmail }, update, { new: true })
         }
         if (!data) {
