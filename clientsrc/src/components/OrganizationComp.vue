@@ -1,0 +1,26 @@
+<template>
+  <div class="card">
+    <h3>Organization Name:{{ orgProfile.name }}</h3>
+    <h5><b>Location</b></h5>
+    <br />
+    <p>State: {{ orgProfile.state }}</p>
+    <p>City: {{ orgProfile.city }}</p>
+    <p>Zipcode: {{ orgProfile.zip }}</p>
+    <p>Street: {{ orgProfile.street }}</p>
+    <h5><b>Contact Information</b></h5>
+    <br />
+    <p>Email: {{ orgProfile.email }}</p>
+    <p>Phone Number: {{ orgProfile.phone }}</p>
+    <h5><b>Description:</b></h5>
+    <br />
+    <p>{{ orgProfile.description }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "organization-component",
+};
+</script>
+
+<style></style>
