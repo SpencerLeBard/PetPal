@@ -11,7 +11,6 @@ export class OrgProfileController extends BaseController {
       .use(auth0Provider.getAuthorizedUserInfo)
       .get("", this.getAll)
       .get("/:id", this.getOrgProfile)
-      .get("/:id/animals", this.getAllAnimalsByOrg)
       .post("", this.createOrg)
       .put("/:id", this.editOrg)
   }
