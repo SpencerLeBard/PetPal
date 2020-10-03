@@ -157,7 +157,7 @@ export default {
 .nl-submit:before,
 .nl-field-go:before {
   font-family: "nlicons";
-  speak: none;
+  /* speak: none; */
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
