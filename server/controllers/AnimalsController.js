@@ -8,9 +8,9 @@ export class AnimalsController extends BaseController {
     super("api/animals");
     this.router
       .get("", this.getAllAnimals)
-      .post("", this.createMany)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.getAuthorizedUserInfo)
+      .post("", this.createMany)
       .put("/:id", this.editAnimal)
       .delete("/:id", this.deleteAnimal);
   }
