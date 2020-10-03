@@ -6,7 +6,7 @@
           Welcome to PetPal! Lets grab some basic info before we find your new
           best friend
         </p>
-        <form class="form-inline reposition" @submit.prevent="getStarted">
+        <form class="form reposition" @submit.prevent="getStarted">
           <transition
             enter-active-class="animated fadeInRight"
             leave-active-class="animated fadeOutLeft"
@@ -14,24 +14,18 @@
           >
             <input
               required
-              v-show="question === 1"
+              v-if="question === 1"
               type="text"
               class="form-control"
               v-model="profileInfo.name"
               placeholder="Enter your first/last name..."
             />
-          </transition>
-          <transition
-            enter-active-class="animated fadeInRight"
-            leave-active-class="animated fadeOutLeft"
-            mode="out-in"
-          >
+
             <select
-              v-show="question === 2"
-              class="form-control"
+              v-else-if="question === 2"
+              class="form-control stateSelect"
               v-model="profileInfo.state"
-              placeholder="State..."
-              id="stateSelect"
+              size="10"
             >
               <option value="" selected="selected">Select a State</option>
               <option value="AL">Alabama</option>
@@ -86,16 +80,10 @@
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
             </select>
-          </transition>
-          <transition
-            enter-active-class="animated fadeInRight"
-            leave-active-class="animated fadeOutLeft"
-            mode="out-in"
-          >
             <select
+              v-if="question === 3"
               class="form-control"
               v-model="profileInfo.animal"
-              v-show="question === 3"
               required
             >
               <option value="" selected="selected">I am looking for...</option>
@@ -104,20 +92,26 @@
               <option value="null">Cats AND Dogs!</option>
             </select>
           </transition>
-          <button
-            v-if="this.question < 3"
-            class="btn btn-danger mt-2 w-100"
-            @click="nextQuestion"
-          >
-            Next
-          </button>
-          <button
-            v-else-if="this.question >= 3"
-            type="submit"
-            class="btn btn-danger mt-2 w-100"
-          >
-            Submit
-          </button>
+
+          <div class="div nextBtn">
+            <button
+              type="button"
+              v-if="this.question <= 3"
+              class="btn btn-warning"
+              @click="nextQuestion"
+            >
+              Next
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
+            <button
+              v-else-if="this.question >= 4"
+              type="submit"
+              class="btn btn-warning"
+            >
+              Next
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
         </form>
       </div>
     </div>
@@ -164,7 +158,13 @@ export default {
   margin-top: 10%;
 }
 
-#stateSelect {
+.stateSelect {
+  max-height: 15vh;
   overflow-y: scroll;
+  background: rgba(255, 255, 255, 0.63);
+}
+
+.nextBtn {
+  margin-top: 80%;
 }
 </style>
