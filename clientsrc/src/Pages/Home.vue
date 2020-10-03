@@ -119,6 +119,7 @@
 </template>
 
 <script>
+import ns from "../Services/NotificationService";
 export default {
   name: "",
   mounted() {},
@@ -132,6 +133,7 @@ export default {
       },
     };
   },
+
   computed: {},
   props: [""],
   components: {},

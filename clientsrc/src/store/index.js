@@ -2,13 +2,15 @@ import Vue from "vue";
 import Vuex from "vuex";
 import router from "../router";
 import { api } from "./AxiosService.js";
-import ns from "./NotificationService.js";
+import ns from "../Services/NotificationService";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     profile: {},
+    animals: [],
+    activeAnimal: {},
   },
   mutations: {
     setProfile(state, profile) {
