@@ -1,49 +1,117 @@
 <template>
-  <div class="container-fluid bg-light">
-    <div class="row getStarted">
-      <div
-        class="col-12 d-flex flex-column h-100 text-center justify-content-center"
-      >
-        <!-- <form>
-          <p>
-            Welcome to PetPal! Let's grab some information before we find your
-            new best friend
-          </p>
-          <div class="form-group">
+  <div class="container-fluid getStarted">
+    <div class="row">
+      <div class="col-12 d-flex flex-column h-100 text-center">
+        <p class="text-light mt-5">
+          Welcome to PetPal! Lets grab some basic info before we find your new
+          best friend
+        </p>
+        <form class="form reposition" @submit.prevent="getStarted">
+          <transition
+            enter-active-class="animated fadeInRight"
+            leave-active-class="animated fadeOutLeft"
+            mode="out-in"
+          >
             <input
+              required
+              v-if="question === 1"
               type="text"
               class="form-control"
-              placeholder="What's your first name?"
+              v-model="profileInfo.name"
+              placeholder="Enter your first/last name..."
             />
-          </div>
-          <button class="btn btn-outline-warning mt-3">
-            Next
-          </button>
-        </form> -->
-        <form id="nl-form" class="nl-form">
-          My Name is
-          <input
-            type="text"
-            value=""
-            placeholder=""
-            data-subline="For example: <em>Los Angeles</em> or <em>New York</em>"
-          />
-          <br />
-          I feel like adopting a
-          <select>
-            <option value="1" selected>No Preference</option>
-            <option value="2">Dog</option>
-            <option value="3">Cat</option>
-            <option value="4">Horse</option>
-            <option value="2">Lot Lizard</option>
-          </select>
-          today!
-          <div class="nl-submit-wrap">
-            <button class="nl-submit" type="submit">
-              Find your best friend!
+
+            <select
+              v-else-if="question === 2"
+              class="form-control stateSelect"
+              v-model="profileInfo.state"
+              size="10"
+            >
+              <option value="" selected="selected">Select a State</option>
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District Of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
+            <select
+              v-if="question === 3"
+              class="form-control"
+              v-model="profileInfo.animal"
+              required
+            >
+              <option value="" selected="selected">I am looking for...</option>
+              <option value="cats">Cats!</option>
+              <option value="dogs">Dogs!</option>
+              <option value="null">Cats AND Dogs!</option>
+            </select>
+          </transition>
+
+          <div class="div nextBtn">
+            <button
+              type="button"
+              v-if="this.question <= 3"
+              class="btn btn-warning"
+              @click="nextQuestion"
+            >
+              Next
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
+            <button
+              v-else-if="this.question >= 4"
+              type="submit"
+              class="btn btn-warning"
+            >
+              Next
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="nl-overlay"></div>
         </form>
       </div>
     </div>
@@ -51,254 +119,54 @@
 </template>
 
 <script>
+import ns from "../Services/NotificationService";
 export default {
   name: "",
   mounted() {},
+  data() {
+    return {
+      question: 1,
+      profileInfo: {
+        name: "",
+        state: "",
+        animal: "",
+      },
+    };
+  },
+
   computed: {},
   props: [""],
   components: {},
-  methods: {},
+  methods: {
+    nextQuestion() {
+      this.question++;
+    },
+    getStarted() {
+      console.log(this.profileInfo);
+    },
+  },
 };
 </script>
 
 <style>
 .getStarted {
   height: 93vh;
-  width: 100vw;
-  /* background: url(https://images.unsplash.com/photo-1554079576-2c60630c343a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=673&q=800); */
+  width: 100%;
+  background-image: url(../assets/goodboi.jpg);
   background-size: cover;
-  background-position: center;
+  background-position: top;
 }
-.nl-form {
-  width: 100%;
-  margin: 0.3em auto 0 auto;
-  font-size: 4em;
-  line-height: 1.5;
-}
-.nl-form ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.nl-form input,
-.nl-form select,
-.nl-form button {
-  border: none;
-  background: transparent;
-  font-family: inherit;
-  font-size: inherit;
-  color: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-}
-.nl-form input:focus {
-  outline: none;
-}
-.nl-field {
-  display: inline-block;
-  position: relative;
-}
-.nl-field.nl-field-open {
-  z-index: 10000;
-}
-.nl-field-toggle,
-.nl-form input,
-.nl-form select {
-  line-height: inherit;
-  display: inline-block;
-  color: #b14943;
-  cursor: pointer;
-  border-bottom: 1px dashed #b14943;
-}
-.nl-field ul {
-  position: absolute;
-  visibility: hidden;
-  background: #76c3bd;
-  left: -0.5em;
-  top: 50%;
-  font-size: 80%;
-  opacity: 0;
-  transform: translateY(-40%) scale(0.9);
-  transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
+.reposition {
+  margin-top: 10%;
 }
 
-.nl-field.nl-field-open ul {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(-50%) scale(1);
-  transition: visibility 0s 0s, opacity 0.3s, transform 0.3s;
-}
-.nl-field ul li {
-  color: #fff;
-  position: relative;
+.stateSelect {
+  max-height: 15vh;
+  overflow-y: scroll;
+  background: rgba(255, 255, 255, 0.63);
 }
 
-.nl-dd ul li {
-  padding: 0 1.5em 0 0.5em;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.nl-dd ul li.nl-dd-checked {
-  color: #478982;
-}
-
-.no-touch .nl-dd ul li:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.no-touch .nl-dd ul li:hover:active {
-  color: #478982;
-}
-.nl-dd ul li.nl-dd-checked:before,
-.nl-submit:before,
-.nl-field-go:before {
-  font-family: "nlicons";
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  -webkit-font-smoothing: antialiased;
-}
-
-.nl-dd ul li.nl-dd-checked:before {
-  content: "e000";
-  position: absolute;
-  right: 1em;
-  font-size: 50%;
-  line-height: 3;
-}
-.nl-ti-text ul {
-  min-width: 8em;
-}
-.nl-ti-text ul li.nl-ti-input input {
-  width: 100%;
-  padding: 0.2em 2em 0.2em 0.5em;
-  border-bottom: none;
-  color: #fff;
-}
-.nl-form .nl-field-go {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.1);
-  width: 1.8em;
-  text-align: center;
-  color: transparent;
-}
-.nl-field-go:before {
-  font-size: 75%;
-  color: #fff;
-  width: 100%;
-  line-height: 2.5;
-  display: block;
-}
-input::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-input:active::-webkit-input-placeholder,
-input:focus::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.2);
-}
-
-input::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-input:active::-moz-placeholder,
-input:focus::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.2);
-}
-
-input:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-input:active::-ms-input-placeholder,
-input:focus::-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.2);
-}
-.nl-ti-text ul li.nl-ti-example {
-  font-size: 40%;
-  font-style: italic;
-  font-weight: 400;
-  padding: 0.4em 1em;
-  color: rgba(0, 0, 0, 0.2);
-  border-top: 1px dashed rgba(255, 255, 255, 0.7);
-}
-
-.nl-ti-text ul li.nl-ti-example em {
-  color: #fff;
-}
-.nl-submit-wrap {
-  margin-top: 0.4em;
-}
-
-.nl-form .nl-submit {
-  line-height: 3;
-  text-transform: uppercase;
-  cursor: pointer;
-  position: relative;
-  background: #76c3bd;
-  color: #fff;
-  padding: 0 1em 0 0;
-  font-size: 40%;
-  font-weight: bold;
-  letter-spacing: 3px;
-}
-
-.nl-submit:before {
-  color: #fff;
-  float: left;
-  padding: 0 0.7em;
-  margin: 0 0.8em 0 0;
-  background: #69b1a9;
-}
-
-.no-touch .nl-form .nl-submit:hover,
-.no-touch .nl-form .nl-submit:active {
-  background: #69b1a9;
-}
-
-.no-touch .nl-form .nl-submit:hover:before {
-  background: #58a199;
-}
-.nl-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  z-index: 9999;
-  visibility: hidden;
-  transition: visibility 0s 0.3s, opacity 0.3s;
-}
-
-.nl-field.nl-field-open ~ .nl-overlay {
-  opacity: 1;
-  visibility: visible;
-  -webkit-transition-delay: 0s;
-  -moz-transition-delay: 0s;
-  transition-delay: 0s;
-}
-@media screen and (max-width: 45em) {
-  .nl-form {
-    font-size: 2.4em;
-  }
-}
-
-@media screen and (max-width: 25em) {
-  .nl-form {
-    font-size: 1em;
-  }
+.nextBtn {
+  margin-top: 80%;
 }
 </style>

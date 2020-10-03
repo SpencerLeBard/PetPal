@@ -6,6 +6,8 @@ class AnimalsService {
     let values = await dbContext.Animals.find(query)
       .limit(20)
       .populate("creator", "name picture");
+
+    // .limit(20)
     // .skip(query.page * 20)
 
     // REVIEW consider for api support of pages
