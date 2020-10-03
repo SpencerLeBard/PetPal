@@ -26,25 +26,16 @@ export class OrgProfileController extends BaseController {
 
   async getOrgProfile(req, res, next) {
     try {
-      let orgProfile = await orgProService.getOrgProfile(req.userInfo._id);
+      let orgProfile = await orgProService.getOrgProfile(req.params.id, req.userInfo._id);
       res.send(orgProfile)
     } catch (error) {
       next(error)
     }
   }
 
-  async getAllAnimalsByOrg(req, res, next) {
-    try {
-      let data = await orgProService.getAllByOrg(req.organization_id)
-      res.send(data)
-    } catch (error) {
-      next(error);
-    }
-  }
-
   async createOrg(req, res, next) {
     try {
-      req.body.profileId = req.userInfo._id
+      req.body.creatorEmail = req.userInfo.email
       let data = await orgProService.createOrg(req.body)
       return res.status(201).send(data)
     } catch (error) {
@@ -54,8 +45,8 @@ export class OrgProfileController extends BaseController {
 
   async editOrg(req, res, next) {
     try {
-      req.body.creatorId = req.user.id;
-      let data = await orgProService.edit(req.userInfo.id, req.body)
+      req.body.creatorEmail = req.userInfo.email.toLowerCase();
+      let data = await orgProService.edit(req.params.id, req.body.creatorEmail, req.body)
       res.send(data)
     } catch (error) {
       next(error)

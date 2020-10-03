@@ -4,16 +4,16 @@ import { BadRequest } from "../utils/Errors"
 class OrgProfileService {
 
     async findAll(query = {}) {
-        let all = await dbContext.OrgProfile.find(query);
+        let all = await dbContext.OrgProfile.find(query).populate("profileId");
         return all;
     }
 
-    async getOrgProfile(userInfo) {
-        return await dbContext.OrgProfile.find({ _id: userInfo })
-    }
-
-    async getAllByOrg(orgId) {
-        let data = await dbContext.OrgProfile.find({ _id: orgId })
+    async getOrgProfile(id) {
+        let data = await dbContext.OrgProfile.findOne({ _id: id }).populate("profileId")
+        if (!data) {
+            throw new BadRequest("Invalid ID or you do not own this list")
+        }
+        return data
     }
 
     async createOrg(rawData) {
@@ -21,11 +21,11 @@ class OrgProfileService {
         return data
     }
 
-    async edit(userId, update) {
-        let org = await this.getOrgProfile(userEmail)
+    async edit(id, userEmail, update) {
+        let org = await this.getOrgProfile(id)
         let data = null
-        if (org.id == userId) {
-            data = await dbContext.OrgProfile.findOneAndUpdate({ creatorEmail: userEmail }, update, { new: true })
+        if (org.creatorEmail == userEmail) {
+            data = await dbContext.OrgProfile.findOneAndUpdate({ _id: id }, update, { new: true })
         }
         if (!data) {
             throw new BadRequest("Invalid information or you do not own this Org");
