@@ -36,7 +36,8 @@ async function mergeSubsIfNeeded(profile, user) {
 function sanitizeBody(body) {
   let writable = {
     name: body.name,
-    picture: body.picture
+    picture: body.picture,
+    hasOrg: body.hasOrg
   };
   return writable;
 }
@@ -70,10 +71,10 @@ class ProfileService {
     return profile;
   }
   /**
-​    * Updates profile with the request body, will only allow changes to editable fields
-​    * @param {any} user Auth0 user object
-​    * @param {any} body Updates to apply to user object
-​    */
+     * Updates profile with the request body, will only allow changes to editable fields
+     * @param {any} user Auth0 user object
+     * @param {any} body Updates to apply to user object
+     */
   async updateProfile(user, body) {
     let update = sanitizeBody(body);
     let profile = await dbContext.Profile.findOneAndUpdate(
