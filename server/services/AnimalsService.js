@@ -3,10 +3,22 @@ import { BadRequest } from "../utils/Errors";
 
 class AnimalsService {
   async findAll(query = {}) {
-    let values = await dbContext.Animals.find(query).populate(
-      "creator",
-      "name picture"
-    );
+    let values = await dbContext.Animals.find(query)
+      .limit(20)
+      .populate("creator", "name picture");
+
+    // .limit(20)
+    // .skip(query.page * 20)
+
+    // REVIEW consider for api support of pages
+    let animals = {
+      page: query.page,
+      resultCount: values.length,
+      animals: values,
+      next:
+        values.length === 20 ? "/api/animals?page=" + (query.page + 1) : null,
+      previous: query.page > 1 ? "/api/animals?page=" + (query.page - 1) : null,
+    };
     return values;
   }
   async findById(id) {
