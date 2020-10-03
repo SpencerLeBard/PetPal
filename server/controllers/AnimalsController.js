@@ -16,7 +16,7 @@ export class AnimalsController extends BaseController {
   }
   async getAllAnimals(req, res, next) {
     try {
-      req.query.page = req.query.page || 1;
+      // req.query.page = req.query.page || 1;
       let data = await animalsService.findAll(req.query);
       return res.send(data);
     } catch (error) {

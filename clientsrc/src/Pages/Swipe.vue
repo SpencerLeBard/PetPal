@@ -1,16 +1,12 @@
 <template>
   <div class="swipe container-fluid">
-    <div class="row justify-content-around">
-      <div class="col-2">
-        <i class="fa fa-minus" aria-hidden="true"></i>
+    <div class="row justify-content-between align-items-center cardRow">
+      <div class="col-2 text-right">
+        <i class="fa fa-minus" @click="next" aria-hidden="true"></i>
       </div>
-      <swipe-card-comp
-        v-for="animal in animals"
-        :key="animal"
-        :animalProp="animal"
-      />
-      <div class="col-2">
-        <i class="fa fa-plus" aria-hidden="true"></i>
+      <swipe-card-comp />
+      <div class="col-2 text-left">
+        <i class="fa fa-plus" @click="next" aria-hidden="true"></i>
       </div>
     </div>
   </div>
@@ -28,14 +24,10 @@ export default {
       path: "animals",
       resource: "animals",
     });
-    this.methods.next();
   },
   computed: {
     animals() {
       return this.$store.state.animals;
-    },
-    activeAnimal() {
-      return this.$store.state.activeAnimal;
     },
   },
   methods: {
@@ -54,5 +46,8 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>
+<style scoped>
+.cardRow {
+  height: 78vh;
+}
+</style>

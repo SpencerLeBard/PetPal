@@ -5,8 +5,9 @@ class AnimalsService {
   async findAll(query = {}) {
     let values = await dbContext.Animals.find(query)
       .limit(20)
-      .skip(query.page * 20)
       .populate("creator", "name picture");
+    // .skip(query.page * 20)
+
     // REVIEW consider for api support of pages
     let animals = {
       page: query.page,
@@ -16,7 +17,7 @@ class AnimalsService {
         values.length === 20 ? "/api/animals?page=" + (query.page + 1) : null,
       previous: query.page > 1 ? "/api/animals?page=" + (query.page - 1) : null,
     };
-    return animals;
+    return values;
   }
   async findById(id) {
     let value = await dbContext.Animals.findById(id);
