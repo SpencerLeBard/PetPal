@@ -4,8 +4,8 @@ import { BadRequest } from "../utils/Errors"
 class OrgProfileService {
 
     async getAll(query = {}) {
-        let all = await dbContext.OrgProfile.find(query)
-        return all
+        let all = await dbContext.OrgProfile.find(query);
+        return all;
     }
 
     async getOrgProfile(userEmail) {
