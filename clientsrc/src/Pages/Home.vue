@@ -24,7 +24,7 @@
             <select
               v-else-if="question === 2"
               class="form-control stateSelect"
-              v-model="profileInfo.state"
+              v-model="profileInfo.search.state"
               size="10"
             >
               <option value="" selected="selected">Select a State</option>
@@ -80,17 +80,27 @@
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
             </select>
-            <select
-              v-if="question === 3"
-              class="form-control"
-              v-model="profileInfo.animal"
-              required
-            >
-              <option value="" selected="selected">I am looking for...</option>
-              <option value="cats">Cats!</option>
-              <option value="dogs">Dogs!</option>
-              <option value="null">Cats AND Dogs!</option>
-            </select>
+            <div class="form-check" v-else-if="question === 3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                v-model="profileInfo.search.dog"
+                value="true"
+                id="dogCheck"
+              />
+              <label class="form-check-label" for="defaultCheck1"> Dogs </label>
+            </div>
+            <div class="form-check" v-if="question === 3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                v-model="profileInfo.search.cat"
+                value=""
+                id="catCheck"
+                disabled
+              />
+              <label class="form-check-label" for="defaultCheck2"> Cats </label>
+            </div>
           </transition>
 
           <div class="div nextBtn">
@@ -128,13 +138,16 @@ export default {
       question: 1,
       profileInfo: {
         name: "",
-        state: "",
-        animal: "",
+        search: { state: "", dog: false, cat: false },
       },
     };
   },
 
-  computed: {},
+  computed: {
+    profile() {
+      return this.$store.state.profile;
+    },
+  },
   props: [""],
   components: {},
   methods: {
@@ -142,7 +155,12 @@ export default {
       this.question++;
     },
     getStarted() {
-      console.log(this.profileInfo);
+      this.$store.dispatch("edit", {
+        getPath: "profile",
+        path: "profile/" + this.profile.id,
+        data: this.profileInfo,
+        resource: "profile",
+      });
     },
   },
 };

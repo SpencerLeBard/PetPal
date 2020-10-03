@@ -1,5 +1,5 @@
 <template>
-  <div class="swipe-card-component col-8">
+  <div class="swipe-card-component col-10">
     <router-link :to="{ name: 'Pet Details', params: {} }">
       <div
         class="card m-2"
@@ -42,14 +42,11 @@ export default {
   computed: {
     activeAnimal() {
       let res = this.$store.state.animals[0];
-      console.log(res);
       this.$store.state.activeAnimal = res;
       return this.$store.state.activeAnimal;
     },
   },
-  methods: {
-    likePet() {},
-  },
+  methods: {},
   components: {},
 };
 </script>

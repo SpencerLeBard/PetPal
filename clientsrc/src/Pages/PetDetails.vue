@@ -159,7 +159,12 @@
               >
             </article>
 
-            <button class="btn btn-primary text-right">AdoptMe</button>
+            <button
+              :href="mailto:activeAnimal.contact.email"
+              class="btn btn-primary text-right"
+            >
+              AdoptMe
+            </button>
           </div>
         </div>
       </section>
@@ -186,7 +191,16 @@ export default {
       return this.$store.state.activeAnimal;
     },
   },
-  methods: {},
+  methods: {
+    editProfile() {
+      this.$store.dispatch("edit", {
+        getPath: "profile",
+        path: "profile",
+        data: this.profileEdit,
+        resource: "profile",
+      });
+    },
+  },
   components: {},
 };
 </script>

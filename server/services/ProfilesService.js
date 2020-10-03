@@ -11,7 +11,7 @@ async function createProfileIfNeeded(profile, user) {
   if (!profile) {
     profile = await dbContext.Profile.create({
       ...user,
-      subs: [user.sub]
+      subs: [user.sub],
     });
   }
   return profile;
@@ -50,7 +50,7 @@ class ProfileService {
    */
   async getProfiles(emails = []) {
     let profiles = await dbContext.Profile.find({
-      email: { $in: emails }
+      email: { $in: emails },
     }).select("email picture name");
     return profiles;
   }
@@ -65,7 +65,7 @@ class ProfileService {
    */
   async getProfile(user) {
     let profile = await dbContext.Profile.findOne({
-      email: user.email
+      email: user.email,
     });
     profile = await createProfileIfNeeded(profile, user);
     await mergeSubsIfNeeded(profile, user);
