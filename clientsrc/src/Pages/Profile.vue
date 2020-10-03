@@ -26,11 +26,11 @@
         ></i>
       </h3>
       <p>Email: {{ profile.email }}</p>
-      <!-- <p>State: {{ profile.search.state }}</p>
+      <!-- <p>State: {{ profile.search.state }}</p> -->
 
-      <p v-if="profile.search.cat == true">Preference: Cat</p>
+      <!-- <p v-if="profile.search.cat == true">Preference: Cat</p>
       <p v-if="profile.search.dog == true">Preference: Dog</p>
-      <-- <p v-if="hasOrg == true">Member of: {{ profile.hasOrg }}</p> -->
+      <p v-if="hasOrg == true">Member of: {{ profile.hasOrg }}</p> -->
     </div>
   </div>
 </template>
