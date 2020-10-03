@@ -1,5 +1,5 @@
 <template>
-  <div class="swipe-card-component col-9">
+  <div class="swipe-card-component col-10">
     <router-link :to="{ name: 'Pet Details', params: {} }">
       <div
         class="card m-2"
