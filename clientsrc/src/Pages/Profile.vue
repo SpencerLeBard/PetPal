@@ -3,7 +3,11 @@
     <h3 class="m-2">
       <b> Welcome to Pet Pals {{ profile.name }}!</b>
     </h3>
-    <img class="rounded" src="http://www.fillmurray.com/200/300" alt="cat" />
+    <img
+      class="rounded shadow-lg"
+      src="http://www.fillmurray.com/200/300"
+      alt="cat"
+    />
     <img
       v-show="profile.cat == true"
       class="rounded"
@@ -16,7 +20,7 @@
       src="https://cdn.shopify.com/s/files/1/0017/9578/4765/products/299_1200x1200.jpg?v=1563980443"
       alt="dog"
     />
-    <div class="profile-card card">
+    <div class="profile-card card shadow-lg">
       <h3>
         Profile Information
         <i
@@ -30,8 +34,8 @@
 
       <p v-if="profile.cat == true">Preference: Cat</p>
       <p v-if="profile.dog == true">Preference: Dog</p>
-      <organization-component
-        class="org-card card text-center"
+      <OrganizationComp
+        class="org-card text-center"
         v-show="profile.hasOrg == true"
       />
     </div>
@@ -39,7 +43,7 @@
 </template>
 
 <script>
-import OrganizationComp from "../components/OrganizationComp";
+import OrganizationComp from "../components/OrganizationComp.vue";
 export default {
   name: "Profile",
   mounted() {},

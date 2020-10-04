@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <h3>Organization Name:{{ orgProfile.name }}</h3>
+  <div>
+    <h3>Organization Name:{{ profile.orgProfile.name }}</h3>
     <h5><b>Location</b></h5>
     <br />
     <p>State: {{ orgProfile.state }}</p>
@@ -20,6 +20,8 @@
 <script>
 export default {
   name: "organization-component",
+  props: [],
+  methods: {},
 };
 </script>
 
