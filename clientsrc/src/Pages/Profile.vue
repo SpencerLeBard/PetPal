@@ -4,8 +4,8 @@
       <b> Welcome to Pet Pals {{ profile.name }}!</b>
     </h3>
     <img
-      class="rounded shadow-lg"
-      src="http://www.fillmurray.com/200/300"
+      class="rounded shadow-lg cat-pic"
+      src="https:/png.pngtree.com/png-vector/20190330/ourlarge/pngtree-continuous-line-drawing-of-minimalist-cat-animals-png-image_895421.jpg"
       alt="cat"
     />
     <img
@@ -34,11 +34,11 @@
 
       <p v-if="profile.cat == true">Preference: Cat</p>
       <p v-if="profile.dog == true">Preference: Dog</p>
-      <OrganizationComp
-        class="org-card text-center"
-        v-show="profile.hasOrg == true"
-      />
     </div>
+    <OrganizationComp
+      class="org-card text-center card"
+      v-show="profile.hasOrg == true"
+    />
   </div>
 </template>
 
@@ -83,5 +83,9 @@ export default {
   margin-left: 4vw;
   width: 92vw;
   padding: 10px;
+}
+.cat-pic {
+  width: 60vw;
+  margin-top: 2vh;
 }
 </style>
