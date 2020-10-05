@@ -158,7 +158,7 @@ export default {
       this.question++;
     },
     getStarted() {
-      this.profileInfo.search = {
+      this.profile.search = {
         cat: this.profileInfo.cat,
         dog: this.profileInfo.dog,
         state: this.profileInfo.state,
@@ -166,7 +166,7 @@ export default {
       this.$store.dispatch("edit", {
         getPath: "profile",
         path: "profile/" + this.profile.id,
-        data: this.profileInfo,
+        data: this.profile,
         resource: "profile",
       });
       router.push({ name: "Swipe" });
