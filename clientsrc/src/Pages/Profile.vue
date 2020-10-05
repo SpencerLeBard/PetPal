@@ -3,20 +3,20 @@
     <h3 class="m-2">
       <b> Welcome to Pet Pals {{ profile.name }}!</b>
     </h3>
+    <!-- <img
+      class="rounded shadow-lg cat-pic"
+      src="https:/png.pngtree.com/png-vector/20190330/ourlarge/pngtree-continuous-line-drawing-of-minimalist-cat-animals-png-image_895421.jpg"
+      alt="cat"
+    /> -->
     <img
+      v-show="profile.search.cat == true"
       class="rounded shadow-lg cat-pic"
       src="https:/png.pngtree.com/png-vector/20190330/ourlarge/pngtree-continuous-line-drawing-of-minimalist-cat-animals-png-image_895421.jpg"
       alt="cat"
     />
     <img
-      v-show="profile.cat == true"
-      class="rounded"
-      src="https:/png.pngtree.com/png-vector/20190330/ourlarge/pngtree-continuous-line-drawing-of-minimalist-cat-animals-png-image_895421.jpg"
-      alt="cat"
-    />
-    <img
-      v-show="profile.dog == true"
-      class="rounded"
+      v-show="profile.search.dog == true"
+      class="rounded shadow-lg dog-pic"
       src="https://cdn.shopify.com/s/files/1/0017/9578/4765/products/299_1200x1200.jpg?v=1563980443"
       alt="dog"
     />
@@ -30,10 +30,13 @@
         ></i>
       </h3>
       <p>Email: {{ profile.email }}</p>
-      <p>State: {{ profile.state }}</p>
+      <p>State: {{ profile.search.state }}</p>
 
-      <p v-if="profile.cat == true">Preference: Cat</p>
-      <p v-if="profile.dog == true">Preference: Dog</p>
+      <p v-if="profile.hasOrg == false">
+        (Not affiliated with any organization)
+      </p>
+      <p v-if="profile.search.cat == true">Preference: Cat</p>
+      <p v-if="profile.search.dog == true">Preference: Dog</p>
     </div>
     <OrganizationComp
       class="org-card text-center card"
@@ -85,6 +88,10 @@ export default {
   padding: 10px;
 }
 .cat-pic {
+  width: 60vw;
+  margin-top: 2vh;
+}
+.dog-pic {
   width: 60vw;
   margin-top: 2vh;
 }
