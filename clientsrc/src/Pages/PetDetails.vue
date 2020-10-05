@@ -159,12 +159,7 @@
               >
             </article>
 
-            <button
-              :href="mailto:activeAnimal.contact.email"
-              class="btn btn-primary text-right"
-            >
-              AdoptMe
-            </button>
+            <button class="btn btn-primary text-right">AdoptMe</button>
           </div>
         </div>
       </section>

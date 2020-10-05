@@ -33,8 +33,10 @@ class AnimalsService {
     return data;
   }
   async create(rawData) {
-    let data = await dbContext.Animals.create(rawData);
-    return data;
+    if (rawData.hasOrg) {
+      let data = await dbContext.Animals.create(rawData);
+      return data;
+    } throw new BadRequest("Only Organizations may post new animals.")
   }
   async edit(id, creatorEmail, update) {
     let data = await dbContext.Animals.findOneAndUpdate(

@@ -10,7 +10,7 @@ export class AnimalsController extends BaseController {
       .get("", this.getAllAnimals)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.getAuthorizedUserInfo)
-      .post("", this.createMany)
+      .post("", this.create)
       .put("/:id", this.editAnimal)
       .delete("/:id", this.deleteAnimal);
   }
@@ -36,7 +36,7 @@ export class AnimalsController extends BaseController {
       next(error);
     }
   }
-  async createMany(req, res, next) {
+  async create(req, res, next) {
     try {
       if (req.body == []) {
         let data = await animalsService.createMany(req.body);
