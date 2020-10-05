@@ -90,13 +90,18 @@ export default {
   margin-left: 4vw;
   width: 92vw;
   padding: 10px;
+  border-radius: 25px;
+  /* background: #569dde;
+  box-shadow: 22px 22px 44px #3e71a0, -22px -22px 44px #6ec9ff; */
 }
 .cat-pic {
   width: 60vw;
   margin-top: 2vh;
+  border-radius: 25px;
 }
 .dog-pic {
   width: 60vw;
   margin-top: 2vh;
+  border-radius: 25px;
 }
 </style>
