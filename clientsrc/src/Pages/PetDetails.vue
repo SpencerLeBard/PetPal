@@ -158,8 +158,9 @@
       ZipCode: {{ activeAnimal.contact.address.postcode }}</pre
               >
             </article>
-
-            <button class="btn btn-primary text-right">AdoptMe</button>
+            <button class="btn btn-primary text-right">
+              AdoptMe
+            </button>
           </div>
         </div>
       </section>
