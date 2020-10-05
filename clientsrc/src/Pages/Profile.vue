@@ -34,11 +34,14 @@
       <p>Email: {{ profile.email }}</p>
       <p>State: {{ profile.search.state }}</p>
 
-      <p v-if="profile.hasOrg == false">
-        (Not affiliated with any organization)
-      </p>
       <p v-if="profile.search.cat == true">Preference: Cat</p>
       <p v-if="profile.search.dog == true">Preference: Dog</p>
+      <p v-if="profile.search.cat == false && profile.search.dog == false">
+        No Animal Preference
+      </p>
+      <p v-if="profile.hasOrg == null">
+        (Not affiliated with any organization)
+      </p>
     </div>
     <OrganizationComp
       class="org-card text-center card"
@@ -91,7 +94,7 @@ export default {
   width: 92vw;
   padding: 10px;
   border-radius: 25px;
-  /* background: #569dde;
+  /* background: #569dde; // NOTE neumorphic styling example commented out //
   box-shadow: 22px 22px 44px #3e71a0, -22px -22px 44px #6ec9ff; */
 }
 .cat-pic {

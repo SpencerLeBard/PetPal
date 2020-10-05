@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="org-profile">
     <h3>Organization Name:{{ orgProfile.name }}</h3>
     <h5><b>Location</b></h5>
     <br />
-    <p>State: {{ orgProfile.orglocation.city }}</p>
+    <p>State: {{ orgProfile.orglocation.state }}</p>
     <p>City: {{ orgProfile.orglocation.city }}</p>
     <p>Zipcode: {{ orgProfile.orglocation.zip }}</p>
     <p>Street: {{ orgProfile.orglocation.street }}</p>
@@ -25,11 +25,14 @@ export default {
     return {};
   },
   methods: {
-    Profile() {
+    profile() {
       return this.$store.state.profile;
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+/* .org-profile {
+} */
+</style>
