@@ -46,7 +46,7 @@ export default {
     likePet() {
       let activeAnimal = this.$store.state.activeAnimal;
       let id = activeAnimal.id;
-      console.log("likePet response");
+
       this.nextPet();
     },
     onSwipe(event) {

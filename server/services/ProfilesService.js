@@ -33,14 +33,7 @@ async function mergeSubsIfNeeded(profile, user) {
  * Restricts changes to the body of the profile object
  * @param {any} body
  */
-function sanitizeBody(user, body) {
-  let profile = await dbContext.Profile.findOne({
-    email: user.email,
-  })
-
-  if (profile.favAnimal.includes(body.favAnimal)) {
-    delete body.favAnimal
-  }
+function sanitizeBody(body) {
   delete body.email
   delete body.subs
   delete body.hasOrg
@@ -80,6 +73,9 @@ class ProfileService {
     });
     profile = await createProfileIfNeeded(profile, user);
     await mergeSubsIfNeeded(profile, user);
+
+    // profile.favorites = favoriteService.getByProfileId(profile.id)
+
     return profile;
   }
   /**
@@ -88,7 +84,7 @@ class ProfileService {
      * @param {any} body Updates to apply to user object
      */
   async updateProfile(user, body) {
-    let update = sanitizeBody(user, body);
+    let update = sanitizeBody(body);
     let profile = await dbContext.Profile.findOneAndUpdate(
       { email: user.email },
       { $set: update },

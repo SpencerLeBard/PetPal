@@ -57,6 +57,7 @@ class AnimalsService {
     if (!data) {
       throw new BadRequest("Invalid Id or you are not Authorized");
     }
+    await dbContext.Favorites.deleteMany({ animalId: id })
   }
 }
 
