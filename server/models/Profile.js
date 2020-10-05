@@ -15,7 +15,6 @@ const Profile = new Schema(
     email: { type: String, lowercase: true, unique: true },
     name: { type: String },
     picture: { type: String },
-
     search: searchSchema,
     hasOrg: { type: Boolean, default: false }
 

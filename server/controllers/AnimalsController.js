@@ -36,6 +36,7 @@ export class AnimalsController extends BaseController {
       next(error);
     }
   }
+
   async create(req, res, next) {
     try {
       if (req.body == []) {

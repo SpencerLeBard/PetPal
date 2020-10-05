@@ -52,24 +52,4 @@ export class OrgProfileController extends BaseController {
       next(error)
     }
   }
-
-  async editAnimal(req, res, next) {
-    try {
-      req.body.creatorEmail = req.userInfo.email.toLowerCase();
-      let data = await animalsService.edit(req.params.id, req.body.creatorEmail, req.body)
-      res.send(data)
-    } catch (error) {
-      next(error)
-    }
-  }
-
-  async deleteAnimal(req, res, next) {
-    try {
-      req.body.creatorEmail = req.userInfo.email.toLowerCase();
-      await animalsService.deleteById(req.params.id, req.body.creatorEmail)
-      return res.send("Successfully Deleted!")
-    } catch (error) {
-      next(error)
-    }
-  }
 }
