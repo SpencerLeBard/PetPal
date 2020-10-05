@@ -24,7 +24,7 @@
             <select
               v-else-if="question === 2"
               class="form-control stateSelect"
-              v-model="profileInfo.search.state"
+              v-model="profileInfo.state"
               size="10"
             >
               <option value="" selected="selected">Select a State</option>
@@ -84,7 +84,7 @@
               <input
                 class="form-check-input"
                 type="checkbox"
-                v-model="profileInfo.search.dog"
+                v-model="profileInfo.dog"
                 value="true"
                 id="dogCheck"
               />
@@ -94,7 +94,7 @@
               <input
                 class="form-check-input"
                 type="checkbox"
-                v-model="profileInfo.search.cat"
+                v-model="profileInfo.cat"
                 value=""
                 id="catCheck"
                 disabled
@@ -129,6 +129,7 @@
 </template>
 
 <script>
+import router from "../router";
 import ns from "../Services/NotificationService";
 export default {
   name: "",
@@ -138,7 +139,9 @@ export default {
       question: 1,
       profileInfo: {
         name: "",
-        search: { state: "", dog: false, cat: false },
+        state: "",
+        dog: false,
+        cat: false,
       },
     };
   },
@@ -155,12 +158,18 @@ export default {
       this.question++;
     },
     getStarted() {
+      this.profileInfo.search = {
+        cat: this.profileInfo.cat,
+        dog: this.profileInfo.dog,
+        state: this.profileInfo.state,
+      };
       this.$store.dispatch("edit", {
         getPath: "profile",
         path: "profile/" + this.profile.id,
         data: this.profileInfo,
         resource: "profile",
       });
+      router.push({ name: "Swipe" });
     },
   },
 };
