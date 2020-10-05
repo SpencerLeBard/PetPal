@@ -17,9 +17,6 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-    beforeEnter: (to, from, next) => {
-      authGuard(to, from, signUpCheck);
-    },
   },
   {
     path: "/profile",
@@ -44,13 +41,13 @@ const routes = [
 const router = new VueRouter({
   routes,
 });
-// function signUpCheck(to, from, next) {
-//   const profile = this.$store.state.profile;
-//   if (!profile.search.state) {
-//     next({ name: "Home" });
-//   } else {
-//     next({ name: "Swipe" });
-//   }
-// }
+function signUpCheck(to, from, next) {
+  const profile = this.$store.state.profile;
+  if (!profile.search.state) {
+    next({ name: "Home" });
+  } else {
+    next({ name: "Swipe" });
+  }
+}
 
 export default router;
