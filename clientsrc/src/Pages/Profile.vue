@@ -3,11 +3,12 @@
     <h3 class="m-2">
       <b> Welcome to Pet Pals {{ profile.name }}!</b>
     </h3>
-    <!-- <img
+    <img
+      v-show="profile.search.cat == false && profile.search.dog == false"
       class="rounded shadow-lg cat-pic"
       src="https:/png.pngtree.com/png-vector/20190330/ourlarge/pngtree-continuous-line-drawing-of-minimalist-cat-animals-png-image_895421.jpg"
       alt="cat"
-    /> -->
+    />
     <img
       v-show="profile.search.cat == true"
       class="rounded shadow-lg cat-pic"
@@ -29,6 +30,7 @@
           aria-hidden="true"
         ></i>
       </h3>
+      <p>Name: {{ profile.name }}</p>
       <p>Email: {{ profile.email }}</p>
       <p>State: {{ profile.search.state }}</p>
 
@@ -49,7 +51,9 @@
 import OrganizationComp from "../components/OrganizationComp.vue";
 export default {
   name: "Profile",
-  mounted() {},
+  mounted() {
+    // this.$store.dispatch("getProfile", this.$route.params.profile);
+  },
   date() {
     return {
       editToggle: false,
