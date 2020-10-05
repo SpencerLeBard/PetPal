@@ -58,6 +58,7 @@ const Animal = new Schema(
     description: { type: String, default: null },
     photos: [fullSchema],
     status: { type: String, required: true },
+    // status: { type: String, required: true, enum: ['available', 'pending', 'adopted'] },
     contact: contactSchema,
   },
   { timestamps: true, toJSON: { virtuals: true } }
