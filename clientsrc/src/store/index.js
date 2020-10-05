@@ -51,7 +51,12 @@ export default new Vuex.Store({
     async getProfile({ commit }) {
       try {
         let res = await api.get("profile");
+        console.log(res);
         commit("setProfile", res.data);
+        console.log(res.data);
+        if (!res.data.search.state) {
+          router.push({ name: "Home" });
+        }
       } catch (error) {
         console.error(error);
       }

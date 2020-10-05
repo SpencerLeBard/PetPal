@@ -1,68 +1,74 @@
 <template>
   <div class="pet-details container-fluid">
     <main class="row">
-      <section class="col-12" id="pet-details-card">
-        <div class="card my-2">
-          <div
-            id="carouselExampleFade"
-            class="card-img-top carousel slide carousel-fade"
-            data-ride="carousel"
-          >
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img
-                  class="d-block w-100"
-                  :src="activeAnimal.photos[0].full"
-                  alt=""
-                />
-              </div>
-              <div
-                v-for="photo in activeAnimal.photos"
-                :key="photo.full._id"
-                class="carousel-item"
-              >
-                <img :src="photo.full" class="d-block w-100" />
-              </div>
+      <section class="col-12 d-flex justify-content-center ">
+        <div
+          id="carouselExampleFade"
+          class="shadow card-img-top carousel slide carousel-fade d-flex justifty-content-center m-2 carousel-image"
+          data-ride="carousel"
+        >
+          <div class="carousel-inner carousel-image">
+            <div class="carousel-image carousel-item active">
+              <img
+                class=" d-block w-100"
+                :src="activeAnimal.photos[0].full"
+                alt=""
+              />
             </div>
-            <a
-              class="carousel-control-prev"
-              href="#carouselExampleFade"
-              role="button"
-              data-slide="prev"
+            <div
+              v-for="photo in activeAnimal.photos"
+              :key="photo.full._id"
+              class="carousel-item arousel-image "
             >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a
-              class="carousel-control-next"
-              href="#carouselExampleFade"
-              role="button"
-              data-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="sr-only">Next</span>
-            </a>
+              <img :src="photo.full" class="cd-block w-100" />
+            </div>
           </div>
+          <a
+            class="carousel-control-prev"
+            href="#carouselExampleFade"
+            role="button"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselExampleFade"
+            role="button"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </section>
 
+      <section class="col-12  justify-content-center" id="pet-details-card">
+        <div class="shadow st card my-2">
           <div class="card-body">
-            <h4 class="card-title text-center">{{ activeAnimal.name }}</h4>
-            <p class="card-text">{{ activeAnimal.description }}</p>
-            <br />
+            <article class="flex-wrap" id="pet-details-title">
+              <h3 class="mt-2 card-title text-center">
+                {{ activeAnimal.name }}
+              </h3>
+              <hr />
+              <br />
+            </article>
 
-            <article id="age">
+            <article class="mb-2" id="pet-description">
+              <p class="card-text">{{ activeAnimal.description }}</p>
+              <hr />
+            </article>
+
+            <article class="my-2" id="age">
               <p class="card-text">
                 <span class="h6">Age:</span> {{ activeAnimal.age }}
               </p>
+              <hr />
             </article>
 
             <article v-if="activeAnimal.breeds.primary" id="breeds">
-              <p class="card-text h6">Breeds:</p>
+              <p class="card-text h6">Breeds</p>
               <pre class="pre-text">
       Primary: {{ activeAnimal.breeds.primary }}</pre
               >
@@ -72,10 +78,11 @@
               <pre v-if="activeAnimal.breeds.mixed" class="pre-text">
       Mixed Breed</pre
               >
+              <hr />
             </article>
 
             <article v-if="activeAnimal.colors.primary" id="color">
-              <p class="card-text h6">Color:</p>
+              <p class="card-text h6">Color</p>
               <pre class="pre-text">
       Primary: {{ activeAnimal.colors.primary }}</pre
               >
@@ -85,23 +92,26 @@
               <pre v-if="activeAnimal.colors.tertiary" class="pre-text">
       Tertiary: {{ activeAnimal.colors.tertiary }}</pre
               >
+              <hr />
             </article>
 
-            <article id="gender">
+            <article class="my-2" id="gender">
               <p class="card-text h6">
                 Gender:
                 <span class="pre-text">{{ activeAnimal.gender }}</span>
               </p>
+              <hr />
             </article>
 
-            <article id="size">
+            <article class="mb-2" id="size">
               <p class="card-text h6">
                 Size: <span class="pre-text">{{ activeAnimal.size }}</span>
               </p>
+              <hr />
             </article>
 
             <article id="attributes">
-              <p class="card-text h6">Attributes:</p>
+              <p class="card-text h6">Attributes</p>
               <pre
                 v-if="activeAnimal.attributes.spayed_neutered"
                 class="pre-text"
@@ -123,18 +133,21 @@
               >
       Has Special Needs</pre
               >
+              <hr />
             </article>
 
             <article v-if="activeAnimal.environment.children" id="enviroment">
               <p class="card-text h6">Enviroment:</p>
               <pre class="pre-text">     Good With Children</pre>
+              <hr />
             </article>
 
-            <article id="status">
+            <article class="mb-2" id="status">
               <p class="card-text h6">
                 Status:
                 <span class="pre-text">{{ activeAnimal.status }}</span>
               </p>
+              <hr />
             </article>
 
             <article id="contact">
@@ -157,11 +170,14 @@
               >
       ZipCode: {{ activeAnimal.contact.address.postcode }}</pre
               >
+              <hr />
+              <a
+                class="btn btn-primary d-flex justify-content-center"
+                :href="'mailto:' + activeAnimal.contact.email"
+              >
+                Contact about Adoption
+              </a>
             </article>
-
-            <button class="btn btn-primary text-right">
-              AdoptMe
-            </button>
           </div>
         </div>
       </section>
@@ -205,5 +221,11 @@ export default {
 <style scoped>
 .pre-text {
   font-family: Arial, Helvetica, sans-serif;
+}
+.shadow {
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+}
+.carousel-image {
+  border-radius: 10px;
 }
 </style>

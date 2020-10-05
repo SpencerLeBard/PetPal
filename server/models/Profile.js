@@ -2,9 +2,11 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const searchSchema = new Schema({
+
   city: { type: String, default: undefined },
   state: { type: String, default: undefined },
   zip: { type: String, default: undefined },
+
   dog: { type: Boolean, default: false },
   cat: { type: Boolean, default: false },
 });
