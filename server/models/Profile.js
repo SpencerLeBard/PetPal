@@ -6,7 +6,7 @@ const searchSchema = new Schema({
   state: { type: String, default: null },
   zip: { type: String, default: null },
   dog: { type: Boolean, default: false },
-  cat: { type: Boolean, default: false }
+  cat: { type: Boolean, default: false },
 });
 
 const Profile = new Schema(
@@ -16,12 +16,9 @@ const Profile = new Schema(
     name: { type: String },
     picture: { type: String },
     search: searchSchema,
-    hasOrg: { type: Boolean, default: false }
-
-    // NOTE If you wish to add additional public properties for profiles do so here
+    hasOrg: { type: Boolean, default: false },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
 
 export default Profile;
-
