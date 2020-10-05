@@ -17,6 +17,7 @@ const Profile = new Schema(
     picture: { type: String },
     search: searchSchema,
     hasOrg: { type: Boolean, default: false },
+    favAnimal: { type: Array, default: [] }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );

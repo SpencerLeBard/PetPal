@@ -28,4 +28,14 @@ export class ProfilesController extends BaseController {
       next(error);
     }
   }
+
+  async giveOrg(req, res, next) {
+    try {
+      req.body.creatorId = req.user.sub;
+      let data = await profilesService.updateOrg(req.userInfo, req.body)
+      res.send(data)
+    } catch (error) {
+      next(error);
+    }
+  }
 }
