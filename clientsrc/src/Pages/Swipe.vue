@@ -21,13 +21,16 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getResource", {
-      path: "animals",
+      path: "animals?contact.address.state=" + this.profile.search.state,
       resource: "animals",
     });
   },
   computed: {
     animals() {
       return this.$store.state.animals;
+    },
+    profile() {
+      return this.$store.state.profile;
     },
   },
   methods: {
@@ -63,7 +66,5 @@ export default {
 <style scoped>
 .cardRow {
   height: 78vh;
-}
-.swipeCard {
 }
 </style>
