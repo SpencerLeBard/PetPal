@@ -138,8 +138,6 @@ export default {
     return {
       question: 1,
       profileInfo: {
-        name: "",
-        state: "",
         dog: false,
         cat: false,
       },
