@@ -80,26 +80,31 @@
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
             </select>
-            <div class="form-check" v-else-if="question === 3">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                v-model="profileInfo.dog"
-                value="true"
-                id="dogCheck"
-              />
-              <label class="form-check-label" for="defaultCheck1"> Dogs </label>
-            </div>
-            <div class="form-check" v-if="question === 3">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                v-model="profileInfo.cat"
-                value=""
-                id="catCheck"
-                disabled
-              />
-              <label class="form-check-label" for="defaultCheck2"> Cats </label>
+            <div id="checkboxes" v-if="question === 3">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  v-model="profileInfo.dog"
+                  value="true"
+                  id="dogCheck"
+                />
+                <label class="form-check-label" for="defaultCheck1">
+                  Dogs
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  v-model="profileInfo.cat"
+                  value=""
+                  id="catCheck"
+                />
+                <label class="form-check-label" for="defaultCheck2">
+                  Cats
+                </label>
+              </div>
             </div>
           </transition>
 
@@ -194,5 +199,9 @@ export default {
 
 .nextBtn {
   margin-top: 80%;
+}
+
+#checkboxes {
+  background-color: rgba(207, 207, 207, 0.5);
 }
 </style>
