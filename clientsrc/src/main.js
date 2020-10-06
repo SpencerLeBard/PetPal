@@ -5,6 +5,7 @@ import router from "./router";
 import store from "./store";
 import { Auth0Plugin, onAuth } from "@bcwdev/auth0-vue";
 import { domain, clientId, audience } from "./authConfig";
+// @ts-ignore
 import { VueHammer } from "vue2-hammer";
 
 Vue.use(Auth0Plugin, {
@@ -28,4 +29,8 @@ new Vue({
   },
 }).$mount("#app");
 
+// @ts-ignore
 Vue.use(VueHammer);
+VueHammer.config.swipe = {
+  threshold: 200,
+};

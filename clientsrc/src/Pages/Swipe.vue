@@ -1,10 +1,27 @@
 <template>
   <div class="swipe container-fluid">
-    <div class="row justify-content-center align-items-center cardRow">
+    <div class="row align-items-center justify-content-center cardRow">
       <!-- <div class="col-2 text-right">
         <i class="fa fa-minus" @click="nextPet" aria-hidden="true"></i>
       </div> -->
-      <swipe-card-comp class="swipeCard" v-hammer:swipe.left.right="onSwipe" />
+      <div>
+        <Vue2InteractDraggable
+          v-if="isVisible"
+          :interact-out-of-sight-x-coordinate="400"
+          :interact-max-rotation="15"
+          :interact-x-threshold="200"
+          :interact-y-threshold="200"
+          :interact-lock-swipe-down="interactLockSwipeDown"
+          :interact-lock-swipe-up="interactLockSwipeUp"
+          @draggedRight="right"
+          @draggedLeft="left"
+        >
+          <swipe-card-comp
+            class="swipeCard"
+            v-hammer:swipe.left.right="onSwipe"
+          />
+        </Vue2InteractDraggable>
+      </div>
       <!-- <div class="col-2 text-left">
         <i class="fa fa-plus" @click="likePet" aria-hidden="true"></i>
       </div> -->
@@ -14,10 +31,15 @@
 
 <script>
 import SwipeCardComp from "../components/SwipeCardComp.vue";
+import { Vue2InteractDraggable } from "vue2-interact";
 export default {
   name: "component",
   data() {
-    return {};
+    return {
+      isVisible: true,
+      interactLockSwipeUp: true,
+      interactLockSwipeDown: true,
+    };
   },
   mounted() {
     this.$store.dispatch("getResource", {
@@ -49,6 +71,7 @@ export default {
     likePet() {
       let activeAnimal = this.$store.state.activeAnimal;
       let id = activeAnimal.id;
+      console.log("i like this pet");
       this.nextPet();
     },
     onSwipe(event) {
@@ -59,14 +82,32 @@ export default {
         this.likePet();
       }
     },
+    right() {
+      setTimeout(() => (this.isVisible = false), 100);
+      setTimeout(() => {
+        this.index++;
+        this.isVisible = true;
+      }, 200);
+    },
+    left() {
+      setTimeout(() => (this.isVisible = false), 100);
+      setTimeout(() => {
+        this.index++;
+        this.isVisible = true;
+      }, 200);
+    },
   },
   components: {
     SwipeCardComp,
+    Vue2InteractDraggable,
   },
 };
 </script>
 <style scoped>
 .cardRow {
   height: 78vh;
+}
+.fixed {
+  position: fixed;
 }
 </style>
