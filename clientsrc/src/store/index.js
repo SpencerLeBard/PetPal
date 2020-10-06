@@ -54,12 +54,11 @@ export default new Vuex.Store({
         console.log(res);
         commit("setProfile", res.data);
         console.log(res.data);
-        debugger;
         if (!res.data.completedQuiz) {
           router.push({ name: "Home" });
         } else {
-          state.profile.search.state = res.data.search.state;
-          router.push({ name: "Swipe" });
+          // state.profile.search.state = res.data.search.state;
+          // router.push({ name: "Swipe" });
         }
       } catch (error) {
         console.error(error);

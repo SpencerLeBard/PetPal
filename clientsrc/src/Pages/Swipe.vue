@@ -16,10 +16,33 @@
           @draggedRight="right"
           @draggedLeft="left"
         >
-          <swipe-card-comp
-            class="swipeCard"
-            v-hammer:swipe.left.right="onSwipe"
-          />
+          <div class="swipe-card-component col-10">
+            <div
+              class="card m-2 d-flex"
+              v-bind:style="{
+                backgroundColor: 'black',
+                backgroundImage:
+                  'url(' + this.activeAnimal.photos[0].full + ')',
+                backgroundSize: 'contain',
+                backgroundPosition: 'center center',
+                backgroundRepeat: 'no-repeat',
+                height: '56vh',
+              }"
+            >
+              <div
+                class="card-body d-flex align-items-end"
+                v-bind:style="{
+                  color: 'Linen',
+                  fontSize: '18pt',
+                  textShadow: '1px 1px black',
+                }"
+              >
+                {{ this.activeAnimal.name }}, {{ this.activeAnimal.age }}
+                <br />
+                {{ this.activeAnimal.gender }}
+              </div>
+            </div>
+          </div>
         </Vue2InteractDraggable>
       </div>
       <!-- <div class="col-2 text-left">
@@ -32,6 +55,7 @@
 <script>
 import SwipeCardComp from "../components/SwipeCardComp.vue";
 import { Vue2InteractDraggable } from "vue2-interact";
+import { onAuth } from "@bcwdev/auth0-vue";
 export default {
   name: "component",
   data() {
@@ -41,7 +65,7 @@ export default {
       interactLockSwipeDown: true,
     };
   },
-  mounted() {
+  async mounted() {
     this.$store.dispatch("getResource", {
       path:
         "animals?contact.address.state=" +
@@ -50,7 +74,11 @@ export default {
       resource: "animals",
     });
   },
+
   computed: {
+    activeAnimal() {
+      return (this.$store.state.activeAnimal = this.$store.state.animals[0]);
+    },
     animals() {
       return this.$store.state.animals;
     },

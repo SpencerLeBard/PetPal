@@ -23,6 +23,7 @@ const routes = [
     name: "Profile",
     component: Profile,
     beforeEnter: authGuard,
+    hasProfile,
   },
   {
     path: "/swipepage",
@@ -41,12 +42,12 @@ const routes = [
 const router = new VueRouter({
   routes,
 });
-function signUpCheck(to, from, next) {
+function hasProfile(to, from, next) {
   const profile = this.$store.state.profile;
-  if (!profile.search.state) {
-    next({ name: "Home" });
+  if (profile) {
+    to({ name: "Swipe" });
   } else {
-    next({ name: "Swipe" });
+    next({ name: "Home" });
   }
 }
 
