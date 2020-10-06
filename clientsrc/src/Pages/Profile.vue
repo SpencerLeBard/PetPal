@@ -1,7 +1,7 @@
 <template>
   <div class="profile text-center">
     <h3 class="m-2">
-      <b> Welcome to Pet Pals {{ profile.name }}!</b>
+      <b> Welcome to PetPals {{ profile.name }}!</b>
     </h3>
     <img
       v-show="profile.search.cat == false && profile.search.dog == false"
@@ -43,15 +43,17 @@
         (Not affiliated with any organization)
       </p>
     </div>
-    <OrganizationComp
+    <!-- FIXME <OrganizationComp
       class="org-card text-center card"
       v-show="profile.hasOrg == true"
-    />
+    /> // FIXME ROUGH DRAFT COMPS NOT DONE //-->
+    <!--FIXME <FavroitePetsComp v-show="profile.favanimals.value" class="fav-pets-card text-center card"  v-for="favAnimal in favAnimals" :key="favAnimal.animalId" :favAnimalProp="favAnimal"/> -->
   </div>
 </template>
 
 <script>
 import OrganizationComp from "../components/OrganizationComp.vue";
+import FavoritePetsComp from "../components/FavoritePetsComp.vue";
 export default {
   name: "Profile",
   mounted() {
@@ -79,15 +81,12 @@ export default {
   },
   components: {
     OrganizationComp,
+    // FavoritePetsComp, NOTE UNCOMMENT ME
   },
 };
 </script>
 
 <style scoped>
-.profile {
-  background-color: #569dde;
-  height: 93vh;
-}
 .profile-card {
   margin-top: 3vh;
   margin-left: 4vw;
@@ -100,11 +99,11 @@ export default {
 .cat-pic {
   width: 60vw;
   margin-top: 2vh;
-  border-radius: 25px;
+  border-radius: 25%;
 }
 .dog-pic {
   width: 60vw;
   margin-top: 2vh;
-  border-radius: 25px;
+  border-radius: 25%;
 }
 </style>

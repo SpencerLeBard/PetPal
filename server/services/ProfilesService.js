@@ -34,16 +34,16 @@ async function mergeSubsIfNeeded(profile, user) {
  * @param {any} body
  */
 function sanitizeBody(body) {
-  delete body.email
-  delete body.subs
-  delete body.hasOrg
+  delete body.email;
+  delete body.subs;
+  // delete body.hasOrg;
   return body;
 }
 
 function sanitizeForOrg(body) {
   let writable = {
-    hasOrg: body.hasOrg
-  }
+    hasOrg: body.hasOrg,
+  };
   return writable;
 }
 
@@ -79,10 +79,10 @@ class ProfileService {
     return profile;
   }
   /**
-     * Updates profile with the request body, will only allow changes to editable fields
-     * @param {any} user Auth0 user object
-     * @param {any} body Updates to apply to user object
-     */
+   * Updates profile with the request body, will only allow changes to editable fields
+   * @param {any} user Auth0 user object
+   * @param {any} body Updates to apply to user object
+   */
   async updateProfile(user, body) {
     let update = sanitizeBody(body);
     let profile = await dbContext.Profile.findOneAndUpdate(

@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const searchSchema = new Schema({
+
   city: { type: String, default: null },
   state: { type: String, default: null },
   zip: { type: String, default: null },
@@ -19,6 +20,7 @@ const Profile = new Schema(
     search: searchSchema,
     hasOrg: { type: Boolean, default: false },
     completedQuiz: { type: Boolean, default: false },
+
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
