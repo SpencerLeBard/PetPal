@@ -36,7 +36,7 @@ async function mergeSubsIfNeeded(profile, user) {
 function sanitizeBody(body) {
   delete body.email;
   delete body.subs;
-  delete body.hasOrg;
+  // delete body.hasOrg;
   return body;
 }
 
