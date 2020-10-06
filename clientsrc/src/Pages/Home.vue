@@ -140,6 +140,7 @@ export default {
       profileInfo: {
         dog: false,
         cat: false,
+        name: "",
       },
     };
   },
@@ -156,6 +157,7 @@ export default {
       this.question++;
     },
     getStarted() {
+      this.profileInfo.completedQuiz = true;
       this.profileInfo.search = {
         cat: this.profileInfo.cat,
         dog: this.profileInfo.dog,

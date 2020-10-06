@@ -9,6 +9,8 @@ import Swipe from "../Pages/Swipe.vue";
 // @ts-ignore
 import PetDetails from "../Pages/PetDetails.vue";
 import { authGuard } from "@bcwdev/auth0-vue";
+import { api } from "../store/AxiosService.js";
+import store from "../store/index.js";
 
 Vue.use(VueRouter);
 
@@ -41,13 +43,5 @@ const routes = [
 const router = new VueRouter({
   routes,
 });
-function signUpCheck(to, from, next) {
-  const profile = this.$store.state.profile;
-  if (!profile.search.state) {
-    next({ name: "Home" });
-  } else {
-    next({ name: "Swipe" });
-  }
-}
 
 export default router;

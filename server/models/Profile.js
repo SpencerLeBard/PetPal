@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const searchSchema = new Schema({
-  city: { type: String, default: undefined },
-  state: { type: String, default: undefined },
-  zip: { type: String, default: undefined },
+
+  city: { type: String, default: null },
+  state: { type: String, default: null },
+  zip: { type: String, default: null },
 
   dog: { type: Boolean, default: false },
   cat: { type: Boolean, default: false },
@@ -18,6 +19,8 @@ const Profile = new Schema(
     picture: { type: String },
     search: searchSchema,
     hasOrg: { type: Boolean, default: false },
+    completedQuiz: { type: Boolean, default: false },
+
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
