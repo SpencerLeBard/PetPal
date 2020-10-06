@@ -39,13 +39,13 @@
       <p v-if="profile.search.cat == false && profile.search.dog == false">
         No Animal Preference
       </p>
-      <p v-if="profile.hasOrg == null">
+      <p v-if="profile.hasOrg == false">
         (Not affiliated with any organization)
       </p>
     </div>
-    <OrganizationComp
+    <organization-component
       class="org-card text-center card"
-      v-show="profile.hasOrg == true"
+      v-if="profile.hasOrg == true"
     />
   </div>
 </template>
@@ -55,7 +55,7 @@ import OrganizationComp from "../components/OrganizationComp.vue";
 export default {
   name: "Profile",
   mounted() {
-    // this.$store.dispatch("getProfile", this.$route.params.profile);
+    this.$store.dispatch("getProfile", this.$route.params.profile);
   },
   date() {
     return {
