@@ -48,27 +48,32 @@ export default new Vuex.Store({
     resetBearer() {
       api.defaults.headers.authorization = "";
     },
-    async getProfile({ commit }) {
+    async getProfile({ commit, dispatch, state }) {
       try {
         let res = await api.get("profile");
         console.log(res);
         commit("setProfile", res.data);
         console.log(res.data);
-        if (!res.data.search.state) {
+        debugger;
+        if (!res.data.completedQuiz) {
           router.push({ name: "Home" });
+        } else {
+          state.profile.search.state = res.data.search.state;
+          router.push({ name: "Swipe" });
         }
       } catch (error) {
         console.error(error);
       }
     },
     //SECTION Array Methods
-    async getResource({ commit }, payload) {
+    async getResource({ commit, state }, payload) {
       try {
         let res = await api.get(payload.path);
         commit("setResource", {
           data: res.data,
           resource: payload.resource,
         });
+        state.activeAnimal = res.data[0];
       } catch (error) {
         console.error(error);
       }
