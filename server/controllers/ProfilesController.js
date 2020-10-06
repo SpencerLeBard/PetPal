@@ -2,7 +2,7 @@ import express from "express";
 import BaseController from "../utils/BaseController";
 import auth0Provider from "@bcwdev/auth0provider";
 import { profilesService } from "../services/ProfilesService";
-// import { FavoritesController } from "./FavoritesController";
+import { FavoritesController } from "./FavoritesController";
 
 export class ProfilesController extends BaseController {
   constructor() {
@@ -11,7 +11,7 @@ export class ProfilesController extends BaseController {
       .use(auth0Provider.getAuthorizedUserInfo)
       .get("", this.getUserProfile)
       .put("/:id", this.edit)
-    // .use("/:id/favorites", new FavoritesController().router)
+      .use("/favorites", new FavoritesController().router)
   }
   async getUserProfile(req, res, next) {
     try {
@@ -38,6 +38,14 @@ export class ProfilesController extends BaseController {
       res.send(data)
     } catch (error) {
       next(error);
+    }
+  }
+
+  async addFav(req, res, next) {
+    try {
+      req.body.creatorId = req.user.email
+    } catch (error) {
+      next(error)
     }
   }
 }
