@@ -2,11 +2,13 @@
   <div id="app">
     <navbar />
     <router-view />
+    <my-footer />
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/navbar";
+import MyFooter from "@/components/MyFooter";
 import { onAuth } from "@bcwdev/auth0-vue";
 export default {
   name: "App",
@@ -19,6 +21,7 @@ export default {
   },
   components: {
     Navbar,
+    MyFooter,
   },
 };
 </script>

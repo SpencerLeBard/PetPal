@@ -1,7 +1,7 @@
 <template>
   <div class="profile text-center">
     <h3 class="m-2">
-      <b> Welcome to Pet Pals {{ profile.name }}!</b>
+      <b> Welcome to PetPals {{ profile.name }}!</b>
     </h3>
     <img
       v-show="profile.search.cat == false && profile.search.dog == false"
@@ -84,10 +84,10 @@ export default {
 </script>
 
 <style scoped>
-.profile {
+/* .profile {
   background-color: #569dde;
   height: 93vh;
-}
+} */
 .profile-card {
   margin-top: 3vh;
   margin-left: 4vw;
@@ -97,14 +97,15 @@ export default {
   /* background: #569dde; // NOTE neumorphic styling example commented out //
   box-shadow: 22px 22px 44px #3e71a0, -22px -22px 44px #6ec9ff; */
 }
+
 .cat-pic {
   width: 60vw;
   margin-top: 2vh;
-  border-radius: 25px;
+  border-radius: 25%;
 }
 .dog-pic {
   width: 60vw;
   margin-top: 2vh;
-  border-radius: 25px;
+  border-radius: 25%;
 }
 </style>
