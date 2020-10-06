@@ -9,6 +9,8 @@ import Swipe from "../Pages/Swipe.vue";
 // @ts-ignore
 import PetDetails from "../Pages/PetDetails.vue";
 import { authGuard } from "@bcwdev/auth0-vue";
+import { api } from "../store/AxiosService.js";
+import store from "../store/index.js";
 
 Vue.use(VueRouter);
 
@@ -23,7 +25,6 @@ const routes = [
     name: "Profile",
     component: Profile,
     beforeEnter: authGuard,
-    hasProfile,
   },
   {
     path: "/swipepage",
@@ -42,13 +43,5 @@ const routes = [
 const router = new VueRouter({
   routes,
 });
-function hasProfile(to, from, next) {
-  const profile = this.$store.state.profile;
-  if (profile) {
-    to({ name: "Swipe" });
-  } else {
-    next({ name: "Home" });
-  }
-}
 
 export default router;

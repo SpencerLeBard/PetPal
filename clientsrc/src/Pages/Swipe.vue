@@ -1,5 +1,5 @@
 <template>
-  <div class="swipe container-fluid">
+  <div class="swipe container-fluid" v-if="profile.id">
     <div class="row align-items-center justify-content-center cardRow">
       <!-- <div class="col-2 text-right">
         <i class="fa fa-minus" @click="nextPet" aria-hidden="true"></i>
@@ -50,14 +50,18 @@
       </div> -->
     </div>
   </div>
+  <div v-else>
+    <h1>Loading.......</h1>
+  </div>
 </template>
 
 <script>
 import SwipeCardComp from "../components/SwipeCardComp.vue";
 import { Vue2InteractDraggable } from "vue2-interact";
 import { onAuth } from "@bcwdev/auth0-vue";
+import router from "../router";
 export default {
-  name: "component",
+  name: "Swipe",
   data() {
     return {
       isVisible: true,
@@ -65,15 +69,7 @@ export default {
       interactLockSwipeDown: true,
     };
   },
-  async mounted() {
-    this.$store.dispatch("getResource", {
-      path:
-        "animals?contact.address.state=" +
-        this.profile.search.state +
-        "&species=Cat",
-      resource: "animals",
-    });
-  },
+  mounted() {},
 
   computed: {
     activeAnimal() {
@@ -84,6 +80,21 @@ export default {
     },
     profile() {
       return this.$store.state.profile;
+    },
+  },
+  watch: {
+    profile: function(userProfile) {
+      if (userProfile.search.state) {
+        this.$store.dispatch("getResource", {
+          path:
+            "animals?contact.address.state=" +
+            userProfile.search.state +
+            "&species=Cat",
+          resource: "animals",
+        });
+      } else {
+        router.push({ name: "Home" });
+      }
     },
   },
   methods: {

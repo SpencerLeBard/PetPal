@@ -140,6 +140,7 @@ export default {
       profileInfo: {
         dog: false,
         cat: false,
+        name: "",
       },
     };
   },
