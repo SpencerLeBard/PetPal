@@ -1,8 +1,9 @@
 <template>
-  <div v-if="this.activeAnimal.photos" class="swipe-card-component col-10">
-    <router-link :to="{ name: 'Pet Details', params: {} }">
+  <div class="swipe-card-component col-10">
+    <router-link :to="{ name: 'Pet Details', params: this.activeAnimal.id }">
+
       <div
-        class="card m-2"
+        class="card m-2 d-flex"
         v-bind:style="{
           backgroundColor: 'black',
           backgroundImage: 'url(' + this.activeAnimal.photos[0].full + ')',
@@ -40,6 +41,9 @@ export default {
     return {};
   },
   computed: {
+    animals() {
+      return this.$store.state.animals;
+    },
     activeAnimal() {
       return this.$store.state.animals[0];
     },
@@ -49,4 +53,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.fixed {
+  position: fixed;
+}
+.card {
+  width: 300px;
+  height: 400px;
+  color: white;
+}
+</style>
