@@ -37,7 +37,7 @@
               name="state"
               class="custom-select stateSelect"
               v-model="profileInfo.state"
-              size="1"
+              size="7"
             >
               <option selected value="">Select a State</option>
               <option value="AL">Alabama</option>
