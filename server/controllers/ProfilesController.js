@@ -40,4 +40,12 @@ export class ProfilesController extends BaseController {
       next(error);
     }
   }
+
+  async addFav(req, res, next) {
+    try {
+      req.body.creatorId = req.user.email
+    } catch (error) {
+      next(error)
+    }
+  }
 }
