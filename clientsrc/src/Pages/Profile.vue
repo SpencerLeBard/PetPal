@@ -43,16 +43,17 @@
         (Not affiliated with any organization)
       </p>
     </div>
-    <!-- <OrganizationComp
+    <!-- FIXME <OrganizationComp
       class="org-card text-center card"
       v-show="profile.hasOrg == true"
-    /> -->
-    <!-- <FavroitePetComp class="org-card text-center card" v-show="profile.something" -->
+    /> // FIXME ROUGH DRAFT COMPS NOT DONE //-->
+    <!--FIXME <FavroitePetsComp v-show="profile.favanimals.value" class="fav-pets-card text-center card"  v-for="favAnimal in favAnimals" :key="favAnimal.animalId" :favAnimalProp="favAnimal"/> -->
   </div>
 </template>
 
 <script>
 import OrganizationComp from "../components/OrganizationComp.vue";
+import FavoritePetsComp from "../components/FavoritePetsComp.vue";
 export default {
   name: "Profile",
   mounted() {
@@ -80,15 +81,12 @@ export default {
   },
   components: {
     OrganizationComp,
+    // FavoritePetsComp, NOTE UNCOMMENT ME
   },
 };
 </script>
 
 <style scoped>
-/* .profile {
-  background-color: #569dde;
-  height: 93vh;
-} */
 .profile-card {
   margin-top: 3vh;
   margin-left: 4vw;
@@ -98,7 +96,6 @@ export default {
   /* background: #569dde; // NOTE neumorphic styling example commented out //
   box-shadow: 22px 22px 44px #3e71a0, -22px -22px 44px #6ec9ff; */
 }
-
 .cat-pic {
   width: 60vw;
   margin-top: 2vh;
