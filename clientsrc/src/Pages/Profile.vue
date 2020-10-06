@@ -39,7 +39,7 @@
       <p v-if="profile.search.cat == false && profile.search.dog == false">
         No Animal Preference
       </p>
-      <p v-if="profile.hasOrg == null">
+      <p v-if="profile.hasOrg == false">
         (Not affiliated with any organization)
       </p>
     </div>
@@ -48,6 +48,7 @@
       v-show="profile.hasOrg == true"
     /> // FIXME ROUGH DRAFT COMPS NOT DONE //-->
     <!--FIXME <FavroitePetsComp v-show="profile.favanimals.value" class="fav-pets-card text-center card"  v-for="favAnimal in favAnimals" :key="favAnimal.animalId" :favAnimalProp="favAnimal"/> -->
+
   </div>
 </template>
 
@@ -57,7 +58,7 @@ import FavoritePetsComp from "../components/FavoritePetsComp.vue";
 export default {
   name: "Profile",
   mounted() {
-    // this.$store.dispatch("getProfile", this.$route.params.profile);
+    this.$store.dispatch("getProfile", this.$route.params.profile);
   },
   date() {
     return {

@@ -2,9 +2,19 @@
   <div class="container-fluid getStarted">
     <div class="row">
       <div class="col-12 d-flex flex-column h-100 text-center">
-        <p class="text-light mt-5">
+        <p class="text-light mt-5 font-24" v-if="question === 0">
           Welcome to PetPal! Lets grab some basic info before we find your new
           best friend
+        </p>
+        <p class="text-light mt-5 font-24" v-if="question === 1">
+          What's your name?
+        </p>
+        <p class="text-light mt-5 font-24" v-if="question === 2">
+          It's great to meet you, {{ profileInfo.name }}. What state do you live
+          in?
+        </p>
+        <p class="text-light mt-5 font-24" v-if="question === 3">
+          Would you like to see cats, dogs, or both?
         </p>
         <form class="form reposition" @submit.prevent="getStarted">
           <transition
@@ -12,22 +22,24 @@
             leave-active-class="animated fadeOutLeft"
             mode="out-in"
           >
-            <input
-              required
-              v-if="question === 1"
-              type="text"
-              class="form-control"
-              v-model="profileInfo.name"
-              placeholder="Enter your first/last name..."
-            />
+            <div class="p-3 form-container rounded" v-if="question === 1">
+              <input
+                required
+                type="text"
+                class="form-control"
+                v-model="profileInfo.name"
+                placeholder="First/last name..."
+              />
+            </div>
 
             <select
-              v-else-if="question === 2"
-              class="form-control stateSelect"
+              v-if="question === 2"
+              name="state"
+              class="custom-select stateSelect"
               v-model="profileInfo.state"
-              size="10"
+              size="7"
             >
-              <option value="" selected="selected">Select a State</option>
+              <option selected value="">Select a State</option>
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
               <option value="AZ">Arizona</option>
@@ -80,26 +92,31 @@
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
             </select>
-            <div class="form-check" v-else-if="question === 3">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                v-model="profileInfo.dog"
-                value="true"
-                id="dogCheck"
-              />
-              <label class="form-check-label" for="defaultCheck1"> Dogs </label>
-            </div>
-            <div class="form-check" v-if="question === 3">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                v-model="profileInfo.cat"
-                value=""
-                id="catCheck"
-                disabled
-              />
-              <label class="form-check-label" for="defaultCheck2"> Cats </label>
+            <div id="checkboxes" class="" v-if="question === 3">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  v-model="profileInfo.dog"
+                  value="true"
+                  id="dogCheck"
+                />
+                <label class="form-check-label" for="defaultCheck1">
+                  Dogs
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  v-model="profileInfo.cat"
+                  value=""
+                  id="catCheck"
+                />
+                <label class="form-check-label" for="defaultCheck2">
+                  Cats
+                </label>
+              </div>
             </div>
           </transition>
 
@@ -136,8 +153,10 @@ export default {
   mounted() {},
   data() {
     return {
-      question: 1,
+      question: 0,
       profileInfo: {
+        name: "",
+        state: "",
         dog: false,
         cat: false,
         name: "",
@@ -189,12 +208,23 @@ export default {
 }
 
 .stateSelect {
-  max-height: 15vh;
+  /* max-height: 15vh; */
   overflow-y: scroll;
   background: rgba(255, 255, 255, 0.63);
 }
 
 .nextBtn {
-  margin-top: 80%;
+  margin-top: 25%;
+}
+
+#checkboxes {
+  background-color: rgba(207, 207, 207, 0.5);
+}
+.font-24 {
+  font-size: 24px;
+}
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.63);
 }
 </style>

@@ -24,10 +24,11 @@ export default {
   data() {
     return {};
   },
-  methods: {
+  computed: {
     profile() {
       return this.$store.state.profile;
     },
+    methods: {},
   },
 };
 </script>
