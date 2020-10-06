@@ -1,5 +1,5 @@
 <template>
-  <div class="swipe-card-component col-10">
+  <div v-if="this.activeAnimal.photos" class="swipe-card-component col-10">
     <router-link :to="{ name: 'Pet Details', params: {} }">
       <div
         class="card m-2"
@@ -41,9 +41,7 @@ export default {
   },
   computed: {
     activeAnimal() {
-      let res = this.$store.state.animals[0];
-      this.$store.state.activeAnimal = res;
-      return this.$store.state.activeAnimal;
+      return this.$store.state.animals[0];
     },
   },
   methods: {},
