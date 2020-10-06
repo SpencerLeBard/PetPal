@@ -43,10 +43,11 @@
         (Not affiliated with any organization)
       </p>
     </div>
-    <OrganizationComp
+    <!-- <OrganizationComp
       class="org-card text-center card"
       v-show="profile.hasOrg == true"
-    />
+    /> -->
+    <!-- <FavroitePetComp class="org-card text-center card" v-show="profile.something" -->
   </div>
 </template>
 

@@ -1,5 +1,7 @@
 <template>
-  <footer class=" container fixed-bottom card-footer bg-dark footer-container">
+  <footer
+    class=" container fixed-bottom card-footer bg-dark footer-container footer"
+  >
     <div class="row">
       <div class="col-6 d-flex justify-content-center profile-link">
         <router-link class="text-light" :to="{ name: 'Profile' }">
@@ -21,4 +23,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.footer {
+  height: 14vh;
+}
+</style>

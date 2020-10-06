@@ -1,37 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <router-link class="navbar-brand" :to="{ name: 'Home' }"
-      >PetPal</router-link
-    >
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item" :class="{ active: $route.name == 'Home' }">
-          <router-link :to="{ name: 'Home' }" class="nav-link"
-            >Home</router-link
-          >
-        </li>
-        <li
-          class="nav-item"
-          v-if="$auth.isAuthenticated"
-          :class="{ active: $route.name == 'Profile' }"
-        >
-          <router-link class="nav-link" :to="{ name: 'Profile' }"
-            >Profile</router-link
-          >
-        </li>
-      </ul>
-      <span class="navbar-text">
+  <div class="container">
+    <div class="row bg-dark text-light navbartop d-flex align-items-center">
+      <div class="col-6 d-flex justify-content-center align-items-center">
+        <h2><i class="fa fa-paw fa-lg" aria-hidden="true"></i>PetPal</h2>
+      </div>
+      <div class="col-6 d-flex justify-content-end">
         <button
           class="btn btn-success"
           @click="login"
@@ -39,10 +12,12 @@
         >
           Login
         </button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
-      </span>
+        <button class="btn btn-danger" @click="logout" v-else>
+          Logout
+        </button>
+      </div>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -66,4 +41,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.navbartop {
+  height: 10vh;
+}
+</style>
