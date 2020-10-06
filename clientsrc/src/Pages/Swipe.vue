@@ -43,7 +43,10 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getResource", {
-      path: "animals?contact.address.state=" + this.profile.search.state,
+      path:
+        "animals?contact.address.state=" +
+        this.profile.search.state +
+        "&species=Cat",
       resource: "animals",
     });
   },

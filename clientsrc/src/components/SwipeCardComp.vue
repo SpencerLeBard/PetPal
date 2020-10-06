@@ -1,6 +1,7 @@
 <template>
   <div class="swipe-card-component col-10">
     <router-link :to="{ name: 'Pet Details', params: this.activeAnimal.id }">
+
       <div
         class="card m-2 d-flex"
         v-bind:style="{
@@ -44,9 +45,7 @@ export default {
       return this.$store.state.animals;
     },
     activeAnimal() {
-      let res = this.$store.state.animals[0];
-      this.$store.state.activeAnimal = res;
-      return this.$store.state.activeAnimal;
+      return this.$store.state.animals[0];
     },
   },
   methods: {},
