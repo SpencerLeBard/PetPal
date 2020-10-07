@@ -99,7 +99,7 @@ export default {
     },
   },
   watch: {
-    profile: function(userProfile) {
+    profile: function (userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
           path: "animals?contact.address.state=" + userProfile.search.state,
@@ -113,7 +113,7 @@ export default {
         router.push({ name: "Home" });
       }
     },
-    animals: function(animals) {
+    animals: function (animals) {
       if (animals[0].name) {
         this.$store.dispatch("setActive", animals[0]);
       } else {

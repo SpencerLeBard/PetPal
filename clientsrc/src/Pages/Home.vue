@@ -1,8 +1,14 @@
 <template>
   <div class="container-fluid getStarted">
     <div class="row">
+      <div v-if="this.$store.state.profile.completed">
+        <button class="btn btn-warning">
+          Next
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
       <div
-        v-if="profile.email"
+        v-else-if="profile.email"
         class="col-12 d-flex flex-column h-100 text-center"
       >
         <p class="text-light mt-5 font-24" v-if="question === 0">
@@ -146,7 +152,7 @@
       </div>
       <div v-else>
         <h2 class="text-center text-light mt-5">
-          Please Login/SignUp To Save Lives!
+          Please Login/SignUp And Save Lives!
         </h2>
       </div>
     </div>
@@ -178,11 +184,26 @@ export default {
   },
   props: [""],
   components: {},
+  watch: {
+    profile: function (userProfile) {
+      if (userProfile.completedQuiz) {
+        router.push({ name: "Swipe" });
+      } else {
+        return;
+      }
+    },
+  },
   methods: {
     nextQuestion() {
       this.question++;
     },
     getStarted() {
+      if (this.profileInfo.cat) {
+        this.profileInfo.cat = "Cat";
+      }
+      if (this.profileInfo.dog) {
+        this.profileInfo.dog = "Dog";
+      }
       this.profileInfo.completedQuiz = true;
       this.profileInfo.search = {
         cat: this.profileInfo.cat,
@@ -195,7 +216,6 @@ export default {
         data: this.profileInfo,
         resource: "profile",
       });
-      this.profile.search.state = this.profileInfo.state;
       router.push({ name: "Swipe" });
     },
   },
