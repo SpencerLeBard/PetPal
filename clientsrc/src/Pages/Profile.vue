@@ -5,26 +5,6 @@
         <b> Welcome to PetPals {{ profile.name }}!</b>
       </h3>
     </div>
-    <div class="col-12 text-center">
-      <img
-        v-show="profile.search.cat == false && profile.search.dog == false"
-        class="rounded shadow-lg cat-pic"
-        src="https:/png.pngtree.com/png-vector/20190330/ourlarge/pngtree-continuous-line-drawing-of-minimalist-cat-animals-png-image_895421.jpg"
-        alt="cat"
-      />
-      <img
-        v-show="profile.search.cat == true"
-        class="rounded shadow-lg cat-pic"
-        src="https:/png.pngtree.com/png-vector/20190330/ourlarge/pngtree-continuous-line-drawing-of-minimalist-cat-animals-png-image_895421.jpg"
-        alt="cat"
-      />
-      <img
-        v-show="profile.search.dog == true"
-        class="rounded shadow-lg dog-pic"
-        src="https://cdn.shopify.com/s/files/1/0017/9578/4765/products/299_1200x1200.jpg?v=1563980443"
-        alt="dog"
-      />
-    </div>
     <div class="col-12 profile-card card shadow-lg text-center">
       <h3>
         Profile Information
@@ -47,9 +27,10 @@
         (Not affiliated with any organization)
       </p>
     </div>
-    <div class="col-12 card">
+    <div class="col-12 card fav-pets-card text-center">
+      <h3>Favorite Animals</h3>
+      <br />
       <favorite-animals-comp
-        class="fav-pets-card text-center"
         v-for="favAnimal in favoriteAnimals"
         :key="favAnimal.animalId"
         :favAnimalProp="favAnimal"
@@ -113,14 +94,10 @@ export default {
   /* background: #569dde; // NOTE neumorphic styling example commented out //
   box-shadow: 22px 22px 44px #3e71a0, -22px -22px 44px #6ec9ff; */
 }
-.cat-pic {
-  width: 40vw;
-  margin-top: 2vh;
-  border-radius: 25%;
-}
-.dog-pic {
-  width: 40vw;
-  margin-top: 2vh;
-  border-radius: 25%;
+.fav-pets-card {
+  margin-top: 3vh;
+  width: 92vw;
+  padding-top: 5px;
+  border-radius: 25px;
 }
 </style>
