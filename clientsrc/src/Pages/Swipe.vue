@@ -6,6 +6,7 @@
       </div> -->
       <div>
         <Vue2InteractDraggable
+          v-hammer:swipe.left.right="onSwipe"
           v-if="isVisible"
           :interact-out-of-sight-x-coordinate="400"
           :interact-max-rotation="15"
@@ -16,7 +17,7 @@
           @draggedRight="right"
           @draggedLeft="left"
         >
-          <div class="swipe-card-component col-10">
+          <div class="swipe-card-component col-12">
             <div
               class="card m-2 d-flex"
               v-bind:style="{
@@ -50,9 +51,15 @@
       </div> -->
     </div>
   </div>
-  <div v-else>
-    <h1>Loading.......</h1>
-  </div>
+  <sectionv v-else class="container-fluid swipe">
+    <article class="row">
+      <div
+        class="col-12 d-flex justify-content-center flex-wrap align-content-center swipe"
+      >
+        <i class="paw-loading fa fa-paw fa-spin" aria-hidden="true"></i>
+      </div>
+    </article>
+  </sectionv>
 </template>
 
 <script>
@@ -67,13 +74,14 @@ export default {
       isVisible: true,
       interactLockSwipeUp: true,
       interactLockSwipeDown: true,
+      favAnimal: {},
     };
   },
   mounted() {},
 
   computed: {
     activeAnimal() {
-      return (this.$store.state.activeAnimal = this.$store.state.animals[0]);
+      return this.$store.state.activeAnimal;
     },
     animals() {
       return this.$store.state.animals;
@@ -86,14 +94,18 @@ export default {
     profile: function(userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
-          path:
-            "animals?contact.address.state=" +
-            userProfile.search.state +
-            "&species=Cat",
+          path: "animals?contact.address.state=" + userProfile.search.state,
           resource: "animals",
         });
       } else {
         router.push({ name: "Home" });
+      }
+    },
+    animals: function(animals) {
+      if (animals[0].name) {
+        this.$store.dispatch("setActive", animals[0]);
+      } else {
+        console.error("this aint working");
       }
     },
   },
@@ -105,11 +117,16 @@ export default {
         activeAnimal = animals[0];
       }
       animals.shift();
-      activeAnimal = animals[0];
+      this.$store.dispatch("setActive", animals[0]);
     },
     likePet() {
       let activeAnimal = this.$store.state.activeAnimal;
-      let id = activeAnimal.id;
+      this.favAnimal.animalId = activeAnimal.id;
+      this.$store.dispatch("addFavorite", {
+        path: "profile/favorites",
+        data: this.favAnimal,
+        resource: "profile",
+      });
       console.log("i like this pet");
       this.nextPet();
     },
@@ -143,10 +160,20 @@ export default {
 };
 </script>
 <style scoped>
+.card {
+  width: 37vh;
+}
 .cardRow {
   height: 78vh;
 }
 .fixed {
   position: fixed;
+}
+.swipe {
+  height: 80vh;
+  overflow-y: scroll;
+}
+.paw-loading {
+  font-size: 4rem;
 }
 </style>
