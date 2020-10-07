@@ -87,10 +87,7 @@ export default {
     profile: function(userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
-          path:
-            "animals?contact.address.state=" +
-            userProfile.search.state +
-            "&species=Cat",
+          path: "animals?contact.address.state=" + userProfile.search.state,
           resource: "animals",
         });
       } else {
