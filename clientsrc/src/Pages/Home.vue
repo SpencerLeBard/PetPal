@@ -177,10 +177,10 @@ export default {
     getStarted() {
       this.profileInfo.completedQuiz = true;
       if (this.profileInfo.cat) {
-        this.profile.cat = "Cat";
+        this.profileInfo.cat = "Cat";
       }
       if (this.profileInfo.dog) {
-        this.profile.dog = "Dog";
+        this.profileInfo.dog = "Dog";
       }
       this.profileInfo.search = {
         cat: this.profileInfo.cat,
