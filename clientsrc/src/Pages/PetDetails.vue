@@ -1,7 +1,7 @@
 <template>
   <div class="pet-details container-fluid">
     <main class="row">
-      <section class="col-12 d-flex justify-content-center ">
+      <section class="col-12 d-flex justify-content-center">
         <div
           id="carouselExampleFade"
           class="shadow card-img-top carousel slide carousel-fade d-flex justifty-content-center m-2 carousel-image"
@@ -10,7 +10,7 @@
           <div class="carousel-inner carousel-image">
             <div class="carousel-image carousel-item active">
               <img
-                class=" d-block w-100"
+                class="d-block w-100"
                 :src="activeAnimal.photos[0].full"
                 alt=""
               />
@@ -18,7 +18,7 @@
             <div
               v-for="photo in activeAnimal.photos"
               :key="photo.full._id"
-              class="carousel-item arousel-image "
+              class="carousel-item arousel-image"
             >
               <img :src="photo.full" class="cd-block w-100" />
             </div>
@@ -44,7 +44,7 @@
         </div>
       </section>
 
-      <section class="col-12  justify-content-center" id="pet-details-card">
+      <section class="col-12 justify-content-center" id="pet-details-card">
         <div class="shadow st card my-2">
           <div class="card-body">
             <article class="flex-wrap" id="pet-details-title">
@@ -227,5 +227,9 @@ export default {
 }
 .carousel-image {
   border-radius: 10px;
+}
+.pet-details {
+  max-height: 80vh;
+  overflow-y: scroll;
 }
 </style>

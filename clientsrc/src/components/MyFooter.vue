@@ -1,5 +1,5 @@
 <template>
-  <footer class=" container card-footer bg-dark footer-container footer">
+  <footer class="container-fluid bg-dark footer">
     <div class="row">
       <div class="col-6 d-flex justify-content-center profile-link">
         <router-link class="text-light" :to="{ name: 'Profile' }">
@@ -7,7 +7,7 @@
         </router-link>
       </div>
       <div class="col-6 d-flex justify-content-center home-link">
-        <router-link class="text-light " :to="{ name: 'Swipe' }"
+        <router-link class="text-light" :to="{ name: 'Swipe' }"
           ><i class="fa fa-home text-light fa-3x" aria-hidden="true"></i>
         </router-link>
       </div>
