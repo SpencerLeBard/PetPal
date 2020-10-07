@@ -4,7 +4,7 @@ import { BadRequest } from "../utils/Errors";
 class AnimalsService {
   async findAll(query = {}) {
     let values = await dbContext.Animals.find(query)
-      .limit(20)
+      .limit(100)
       .populate("creator", "name picture");
 
     // .limit(20)
@@ -36,7 +36,8 @@ class AnimalsService {
     if (rawData.hasOrg) {
       let data = await dbContext.Animals.create(rawData);
       return data;
-    } throw new BadRequest("Only Organizations may post new animals.")
+    }
+    throw new BadRequest("Only Organizations may post new animals.");
   }
   async edit(id, creatorEmail, update) {
     let data = await dbContext.Animals.findOneAndUpdate(
@@ -57,7 +58,7 @@ class AnimalsService {
     if (!data) {
       throw new BadRequest("Invalid Id or you are not Authorized");
     }
-    await dbContext.Favorites.deleteMany({ animalId: id })
+    await dbContext.Favorites.deleteMany({ animalId: id });
   }
 }
 

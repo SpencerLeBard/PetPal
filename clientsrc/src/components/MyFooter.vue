@@ -1,16 +1,18 @@
 <template>
-  <footer
-    class=" container fixed-bottom card-footer bg-dark footer-container footer"
-  >
+  <footer class="container-fluid fixed-bottom bg-dark footer">
     <div class="row">
-      <div class="col-6 d-flex justify-content-center profile-link">
+      <div
+        class="profile col-6 d-flex justify-content-center profile-link align-items-center"
+      >
         <router-link class="text-light" :to="{ name: 'Profile' }">
-          <i class="fa fa-user text-light fa-5x" aria-hidden="true"></i>
+          <i class="fa fa-user text-light fa-3x" aria-hidden="true"></i>
         </router-link>
       </div>
-      <div class="col-6 d-flex justify-content-center home-link">
-        <router-link class="text-light " :to="{ name: 'Swipe' }"
-          ><i class="fa fa-home text-light fa-5x" aria-hidden="true"></i>
+      <div
+        class="swipe col-6 d-flex justify-content-center home-link align-items-center"
+      >
+        <router-link class="text-light" :to="{ name: 'Swipe' }"
+          ><i class="fa fa-home text-light fa-3x" aria-hidden="true"></i>
         </router-link>
       </div>
     </div>
@@ -23,8 +25,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .footer {
-  height: 14vh;
+  height: 10vh;
+}
+.profile {
+  height: 10vh;
+}
+.swipe {
+  height: 10vh;
 }
 </style>

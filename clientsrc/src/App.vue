@@ -2,7 +2,7 @@
   <div id="app">
     <navbar />
     <router-view />
-    <my-footer />
+    <my-footer v-if="$route.name != 'Home'" />
   </div>
 </template>
 
