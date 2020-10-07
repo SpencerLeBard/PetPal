@@ -11,6 +11,7 @@ export default new Vuex.Store({
     profile: {},
     animals: [],
     activeAnimal: {},
+    animalDetails: {},
     favorites: [],
   },
   mutations: {
@@ -46,7 +47,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    setBearer({ }, bearer) {
+    setBearer({}, bearer) {
       api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
@@ -81,7 +82,6 @@ export default new Vuex.Store({
           data: res.data,
           resource: payload.resource,
         });
-        state.activeAnimal = res.data[0];
       } catch (error) {
         console.error(error);
       }
@@ -152,7 +152,7 @@ export default new Vuex.Store({
           parentId: payload.parentId,
           resource: payload.resource,
         });
-      } catch (error) { }
+      } catch (error) {}
     },
     async deleteDictionary({ dispatch }, payload) {
       try {

@@ -22,11 +22,13 @@ class AnimalsService {
     return values;
   }
   async findById(id) {
-    let value = await dbContext.Animals.findById(id);
-    if (!value) {
+    let animal = await dbContext.Animals.findById({
+      _id: id,
+    });
+    if (!animal) {
       throw new BadRequest("Invalid Id");
     }
-    return value;
+    return animal;
   }
   async createMany(array) {
     let data = await dbContext.Animals.insertMany(array);
