@@ -167,5 +167,12 @@ export default new Vuex.Store({
     //!SECTION Array Methods
 
     //SECTION Dictionary Methods
+    //SECTION Edge Cases
+    setActive({ commit }, data) {
+      commit("setResource", {
+        resource: "activeAnimal",
+        data: data,
+      });
+    },
   },
 });

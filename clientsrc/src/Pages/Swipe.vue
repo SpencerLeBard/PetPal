@@ -74,7 +74,7 @@ export default {
 
   computed: {
     activeAnimal() {
-      return (this.$store.state.activeAnimal = this.$store.state.animals[0]);
+      return this.$store.state.activeAnimal;
     },
     animals() {
       return this.$store.state.animals;
@@ -84,7 +84,7 @@ export default {
     },
   },
   watch: {
-    profile: function (userProfile) {
+    profile: function(userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
           path: "animals?contact.address.state=" + userProfile.search.state,
@@ -92,6 +92,13 @@ export default {
         });
       } else {
         router.push({ name: "Home" });
+      }
+    },
+    animals: function(animals) {
+      if (animals[0].name) {
+        this.$store.dispatch("setActive", animals[0]);
+      } else {
+        console.error("this aint working");
       }
     },
   },
@@ -103,7 +110,7 @@ export default {
         activeAnimal = animals[0];
       }
       animals.shift();
-      activeAnimal = animals[0];
+      this.$store.dispatch("setActive", animals[0]);
     },
     likePet() {
       let activeAnimal = this.$store.state.activeAnimal;
