@@ -10,6 +10,7 @@ export class AnimalsController extends BaseController {
       .get("", this.getAllAnimals)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.getAuthorizedUserInfo)
+      .get("/:id", this.getById)
       .post("", this.create)
       .put("/:id", this.editAnimal)
       .delete("/:id", this.deleteAnimal);
@@ -18,6 +19,14 @@ export class AnimalsController extends BaseController {
     try {
       // req.query.page = req.query.page || 1;
       let data = await animalsService.findAll(req.query);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getById(req, res, next) {
+    try {
+      let data = await animalsService.findById(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);

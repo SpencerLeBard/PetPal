@@ -1,6 +1,6 @@
 <template>
   <div class="pet-details container-fluid">
-    <main class="row">
+    <main class="row" v-if="activeAnimal.id">
       <section class="col-12 d-flex justify-content-center">
         <div
           id="carouselExampleFade"
@@ -186,31 +186,32 @@
         </div>
       </section>
     </main>
+    <section v-else>
+      <h1>loading...</h1>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
   name: "petDetails",
+  mounted() {
+    this.$store.dispatch("getResource", {
+      path: "animals/" + this.$route.params.id,
+      resource: "animalDetails",
+    });
+  },
   data() {
     return {};
   },
 
   computed: {
     activeAnimal() {
-      return this.$store.state.activeAnimal;
+      return this.$store.state.animalDetails;
     },
   },
-  methods: {
-    editProfile() {
-      this.$store.dispatch("edit", {
-        getPath: "profile",
-        path: "profile",
-        data: this.profileEdit,
-        resource: "profile",
-      });
-    },
-  },
+  watch: {},
+  methods: {},
   components: {},
 };
 </script>
