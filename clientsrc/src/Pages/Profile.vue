@@ -116,8 +116,8 @@
       <p>State: {{ profile.search.state }}</p>
       <p v-if="profile.search.zipcode">Zip: {{ profile.search.zipcode }}</p>
 
-      <p v-if="profile.search.cat == true">Preference: Cat</p>
-      <p v-if="profile.search.dog == true">Preference: Dog</p>
+      <p v-if="profile.search.cat == true">Looking For: Cat</p>
+      <p v-if="profile.search.dog == true">Fooking For: Dog</p>
       <p v-if="profile.search.cat == false && profile.search.dog == false">
         No Animal Preference
       </p>
@@ -127,7 +127,6 @@
     </div>
     <div class="col-12 card fav-pets-card text-center">
       <h3>Favorite Animals</h3>
-      <br />
       <favorite-animals-comp
         v-for="favAnimal in favoriteAnimals"
         :key="favAnimal.animalId.id"
@@ -135,9 +134,7 @@
       />
       <!-- NOTE <OrganizationComp
       class="org-card text-center card"
-      v-show="profile.hasOrg == true"
-
-    /> // ROUGH DRAFT COMPS NOT DONE //-->
+      v-show="profile.hasOrg == true"-->
     </div>
   </div>
 </template>
@@ -179,6 +176,12 @@ export default {
   },
   methods: {
     editProfile() {
+      if (this.profileData.cat) {
+        this.profileData.cat = "Cat";
+      }
+      if (this.profileInfo.dog) {
+        this.profileData.dog = "Dog";
+      }
       this.$store.dispatch("edit", {
         getPath: "profile",
         path: "profile/" + this.profile.id,
