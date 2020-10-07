@@ -48,7 +48,6 @@
       v-show="profile.hasOrg == true"
     /> // FIXME ROUGH DRAFT COMPS NOT DONE //-->
     <!--FIXME <FavroitePetsComp v-show="profile.favanimals.value" class="fav-pets-card text-center card"  v-for="favAnimal in favAnimals" :key="favAnimal.animalId" :favAnimalProp="favAnimal"/> -->
-
   </div>
 </template>
 
