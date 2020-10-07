@@ -1,5 +1,5 @@
 <template>
-  <footer class="container-fluid bg-dark footer">
+  <footer class="container-fluid fixed-bottom bg-dark footer">
     <div class="row">
       <div
         class="profile col-6 d-flex justify-content-center profile-link align-items-center"

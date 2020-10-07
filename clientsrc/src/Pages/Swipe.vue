@@ -1,9 +1,9 @@
 <template>
   <div class="swipe container-fluid" v-if="profile.id">
     <div class="row align-items-center justify-content-center cardRow">
-      <!-- <div class="col-2 text-right">
-        <i class="fa fa-minus" @click="nextPet" aria-hidden="true"></i>
-      </div> -->
+      <div class="col-1 text-left p-0">
+        <img src="../assets/brokenheart.png" alt="" />
+      </div>
       <div>
         <Vue2InteractDraggable
           v-hammer:swipe.left.right="onSwipe"
@@ -17,7 +17,7 @@
           @draggedRight="right"
           @draggedLeft="left"
         >
-          <div class="swipe-card-component col-12">
+          <div class="swipe-card-component col-10">
             <div
               class="card m-2 d-flex"
               v-bind:style="{
@@ -46,14 +46,20 @@
           </div>
         </Vue2InteractDraggable>
       </div>
-      <!-- <div class="col-2 text-left">
-        <i class="fa fa-plus" @click="likePet" aria-hidden="true"></i>
-      </div> -->
+      <div class="col-1 text-left p-0">
+        <img src="../assets/heart.png" alt="" />
+      </div>
     </div>
   </div>
-  <div v-else>
-    <h1>Loading.......</h1>
-  </div>
+  <sectionv v-else class="container-fluid swipe">
+    <article class="row">
+      <div
+        class="col-12 d-flex justify-content-center flex-wrap align-content-center swipe"
+      >
+        <i class="paw-loading fa fa-paw fa-spin" aria-hidden="true"></i>
+      </div>
+    </article>
+  </sectionv>
 </template>
 
 <script>
@@ -68,13 +74,14 @@ export default {
       isVisible: true,
       interactLockSwipeUp: true,
       interactLockSwipeDown: true,
+      favAnimal: {},
     };
   },
   mounted() {},
 
   computed: {
     activeAnimal() {
-      return (this.$store.state.activeAnimal = this.$store.state.animals[0]);
+      return this.$store.state.activeAnimal;
     },
     animals() {
       return this.$store.state.animals;
@@ -82,19 +89,26 @@ export default {
     profile() {
       return this.$store.state.profile;
     },
+    favorites() {
+      return this.$store.state.favorites;
+    },
   },
   watch: {
-    profile: function (userProfile) {
+    profile: function(userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
-          path:
-            "animals?contact.address.state=" +
-            userProfile.search.state +
-            "&species=Cat",
+          path: "animals?contact.address.state=" + userProfile.search.state,
           resource: "animals",
         });
       } else {
         router.push({ name: "Home" });
+      }
+    },
+    animals: function(animals) {
+      if (animals[0].name) {
+        this.$store.dispatch("setActive", animals[0]);
+      } else {
+        console.error("this aint working");
       }
     },
   },
@@ -106,15 +120,16 @@ export default {
         activeAnimal = animals[0];
       }
       animals.shift();
-      activeAnimal = animals[0];
+      this.$store.dispatch("setActive", animals[0]);
     },
     likePet() {
       let activeAnimal = this.$store.state.activeAnimal;
-      let id = activeAnimal.id;
-      // this.$store.dispatch("addFavorite", {
-      //   path: "animals/favorite",
-      //   data: id,
-      // });
+      this.favAnimal.animalId = activeAnimal.id;
+      this.$store.dispatch("addFavorite", {
+        path: "profile/favorites",
+        data: this.favAnimal,
+        resource: "profile",
+      });
       console.log("i like this pet");
       this.nextPet();
     },
@@ -160,5 +175,11 @@ export default {
 .swipe {
   height: 80vh;
   overflow-y: scroll;
+}
+.paw-loading {
+  font-size: 4rem;
+}
+img {
+  max-height: 4vh;
 }
 </style>

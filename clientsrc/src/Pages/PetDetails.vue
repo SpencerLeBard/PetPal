@@ -171,12 +171,16 @@
       ZipCode: {{ activeAnimal.contact.address.postcode }}</pre
               >
               <hr />
+            </article>
+            <article id="buttons" class="d-flex">
               <a
-                class="btn btn-primary d-flex justify-content-center"
+                class="btn btn-success m-2"
                 :href="'mailto:' + activeAnimal.contact.email"
               >
                 Contact about Adoption
               </a>
+
+              <button class="btn btn-danger m-2">Remove from Favorite</button>
             </article>
           </div>
         </div>
@@ -190,13 +194,6 @@ export default {
   name: "petDetails",
   data() {
     return {};
-  },
-  mounted() {
-    this.$store.dispatch("getResource", {
-      path: "animals",
-      resource: "animals",
-    });
-    this.$store.state.activeAnimal = this.$store.state.animals[18];
   },
 
   computed: {

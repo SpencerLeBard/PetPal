@@ -33,7 +33,7 @@ const routes = [
     beforeEnter: authGuard,
   },
   {
-    path: "/petdetails",
+    path: "/petdetails/:id",
     name: "PetDetails",
     component: PetDetails,
     beforeEnter: authGuard,
