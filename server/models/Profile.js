@@ -7,8 +7,8 @@ const searchSchema = new Schema({
   state: { type: String, default: null },
   zip: { type: String, default: null },
 
-  dog: { type: Boolean, default: false },
-  cat: { type: Boolean, default: false },
+  dog: { type: String, default: "" },
+  cat: { type: String, default: "" },
 });
 
 const Profile = new Schema(

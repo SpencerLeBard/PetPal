@@ -1,7 +1,10 @@
 <template>
   <div class="container-fluid getStarted">
     <div class="row">
-      <div v-if="profile" class="col-12 d-flex flex-column h-100 text-center">
+      <div
+        v-if="profile.email"
+        class="col-12 d-flex flex-column h-100 text-center"
+      >
         <p class="text-light mt-5 font-24" v-if="question === 0">
           Welcome to PetPal! Lets grab some basic info before we find your new
           best friend
@@ -140,6 +143,11 @@
             </button>
           </div>
         </form>
+      </div>
+      <div v-else>
+        <h2 class="text-center text-light mt-5">
+          Please Login/SignUp To Save Lives!
+        </h2>
       </div>
     </div>
   </div>
