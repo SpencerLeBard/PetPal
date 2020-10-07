@@ -1,11 +1,19 @@
 <template>
-  <div class="fav-pets">
-    <!-- <router-link
-      class="card bg-primary rounded"
-      :to="{name:'favorite-animals', params:{animalId: favAnimalsProp.id}}"
-    > -->
-    <!-- <p v-if="favAnimalsProp.value">No Favorite Animals :(</p> -->
-    <p>{{ favAnimalProp.animalId.name }}</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="fav-pets text-center justify-content-center col-12">
+        <router-link
+          :to="{
+            name: 'PetDetails',
+            params: { id: favAnimalProp.animalId.id },
+          }"
+        >
+          <p>{{ favAnimalProp.animalId.name }}</p>
+
+          <img :src="favAnimalProp.animalId.photos[0].full" alt="pet" />
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,4 +32,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.fav-pets img {
+  max-width: 35vh;
+  max-height: 30vh;
+}
+</style>

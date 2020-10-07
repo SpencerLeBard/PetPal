@@ -130,7 +130,7 @@
       <br />
       <favorite-animals-comp
         v-for="favAnimal in favoriteAnimals"
-        :key="favAnimal.animalId"
+        :key="favAnimal.animalId.id"
         :favAnimalProp="favAnimal"
       />
       <!-- NOTE <OrganizationComp
