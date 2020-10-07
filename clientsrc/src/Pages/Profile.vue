@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="profile container-fluid">
     <div class="col-12 text-center">
       <h3 class="m-2">
         <b> Welcome to PetPals {{ profile.name }}!</b>
@@ -40,7 +40,6 @@
       v-show="profile.hasOrg == true"
     /> // ROUGH DRAFT COMPS NOT DONE //-->
     </div>
-
   </div>
 </template>
 

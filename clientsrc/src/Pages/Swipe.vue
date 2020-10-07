@@ -51,9 +51,15 @@
       </div> -->
     </div>
   </div>
-  <div v-else>
-    <h1>Loading.......</h1>
-  </div>
+  <sectionv v-else class="container-fluid swipe">
+    <article class="row">
+      <div
+        class="col-12 d-flex justify-content-center flex-wrap align-content-center swipe"
+      >
+        <i class="paw-loading fa fa-paw fa-spin" aria-hidden="true"></i>
+      </div>
+    </article>
+  </sectionv>
 </template>
 
 <script>
@@ -166,5 +172,8 @@ export default {
 .swipe {
   height: 80vh;
   overflow-y: scroll;
+}
+.paw-loading {
+  font-size: 4rem;
 }
 </style>
