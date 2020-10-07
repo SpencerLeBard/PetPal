@@ -22,7 +22,8 @@
     "socket.io": "^2.3.0",
     "sweetalert2": "^10.3.5",
     "vue-moment": "^4.1.0",
-    "vue2-hammer": "^2.1.2"
+    "vue2-hammer": "^2.1.2",
+    "vue2-interact": "0.0.3"
   },
   "engines": {
     "node": "^12.9.0",

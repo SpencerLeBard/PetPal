@@ -26,6 +26,8 @@ export class AnimalsController extends BaseController {
   async editAnimal(req, res, next) {
     try {
       req.body.creatorEmail = req.userInfo.email.toLowerCase();
+      // REVIEW put all this data into the object being edited
+      // req.body.id = req.params.id
       let data = await animalsService.edit(
         req.params.id,
         req.body.creatorEmail,
@@ -39,6 +41,7 @@ export class AnimalsController extends BaseController {
 
   async create(req, res, next) {
     try {
+      // REVIEW do we still want this (seperate route)
       if (req.body == []) {
         let data = await animalsService.createMany(req.body);
         return res.status(201).send(data);
