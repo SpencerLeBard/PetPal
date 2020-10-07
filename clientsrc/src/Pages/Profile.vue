@@ -107,7 +107,7 @@ export default {
   border-radius: 25%;
 }
 .profile {
-  max-height: 80vh;
+  height: 80vh;
   overflow-y: scroll;
 }
 </style>

@@ -229,7 +229,7 @@ export default {
   border-radius: 10px;
 }
 .pet-details {
-  max-height: 80vh;
+  height: 80vh;
   overflow-y: scroll;
 }
 </style>
