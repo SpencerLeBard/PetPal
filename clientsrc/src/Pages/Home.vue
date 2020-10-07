@@ -159,7 +159,6 @@ export default {
         state: "",
         dog: false,
         cat: false,
-        name: "",
       },
     };
   },

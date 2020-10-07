@@ -24,15 +24,113 @@
     <div class="profile-card card shadow-lg">
       <h3>
         Profile Information
-        <i
-          @click="editToggle = !editToggle"
-          class="fa fa-pencil"
-          aria-hidden="true"
-        ></i>
+        <span data-toggle="modal" data-target="#editProfileModal"
+          ><i class="fa fa-pencil text-warning " aria-hidden="true"></i
+        ></span>
       </h3>
+      <!-- Modal for editing profile info -->
+      <div
+        class="modal fade"
+        id="editProfileModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content text-light">
+            <div class="modal-header bg-primary">
+              <h5 class="modal-title text-light" id="exampleModalLabel">
+                Edit Profile Info
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form @submit.prevent="editProfile">
+              <input
+                class="form-control w-75 my-2 ml-5"
+                type="text"
+                placeholder="Your name... "
+                v-model="profileData.name"
+                required
+              />
+              <input
+                class="form-control w-75 my-2 ml-5"
+                type="text"
+                placeholder="City..."
+                v-model="profileData.search.city"
+              />
+              <input
+                class="form-control w-75 my-2 ml-5"
+                type="text"
+                placeholder="State..."
+                v-model="profileData.search.state"
+              />
+              <input
+                class="form-control w-75 my-2 ml-5"
+                type="text"
+                placeholder="Zipcode..."
+                v-model="profileData.search.zip"
+              />
+              <div class="form-row">
+                <div class="col-4 d-flex justify-content-end">
+                  <p class="text-dark">Show me...</p>
+                </div>
+                <div class="col-3">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      v-model="profileData.search.dog"
+                      value="true"
+                      id="dogCheck"
+                    />
+                    <label
+                      class="form-check-label text-dark"
+                      for="defaultCheck1"
+                    >
+                      Dogs
+                    </label>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      v-model="profileData.search.cat"
+                      value=""
+                      id="catCheck"
+                    />
+                    <label
+                      class="form-check-label text-dark"
+                      for="defaultCheck2"
+                    >
+                      Cats
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer justify-content-center">
+                <button type="submit" class="btn btn-danger">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
       <p>Name: {{ profile.name }}</p>
       <p>Email: {{ profile.email }}</p>
+      <p v-if="profile.search.city">City: {{ profile.search.city }}</p>
       <p>State: {{ profile.search.state }}</p>
+      <p v-if="profile.search.zipcode">Zip: {{ profile.search.zipcode }}</p>
 
       <p v-if="profile.search.cat == true">Preference: Cat</p>
       <p v-if="profile.search.dog == true">Preference: Dog</p>
@@ -48,7 +146,6 @@
       v-show="profile.hasOrg == true"
     /> // FIXME ROUGH DRAFT COMPS NOT DONE //-->
     <!--FIXME <FavroitePetsComp v-show="profile.favanimals.value" class="fav-pets-card text-center card"  v-for="favAnimal in favAnimals" :key="favAnimal.animalId" :favAnimalProp="favAnimal"/> -->
-
   </div>
 </template>
 
@@ -60,9 +157,19 @@ export default {
   mounted() {
     this.$store.dispatch("getProfile", this.$route.params.profile);
   },
-  date() {
+  data() {
     return {
-      editToggle: false,
+      editToggle: true,
+      profileData: {
+        name: "",
+        search: {
+          cat: null,
+          dog: null,
+          city: "",
+          state: "",
+          zip: 12345,
+        },
+      },
     };
   },
   computed: {
@@ -74,10 +181,12 @@ export default {
     editProfile() {
       this.$store.dispatch("edit", {
         getPath: "profile",
-        path: "profile",
-        data: this.profileEdit,
+        path: "profile/" + this.profile.id,
+        data: this.profileData,
         resource: "profile",
       });
+      $("#editProfileModal").hide();
+      $(".modal-backdrop").hide();
     },
   },
   components: {
