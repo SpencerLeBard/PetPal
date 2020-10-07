@@ -11,10 +11,14 @@ export default new Vuex.Store({
     profile: {},
     animals: [],
     activeAnimal: {},
+    favorites: [],
   },
   mutations: {
     setProfile(state, profile) {
       state.profile = profile;
+    },
+    setFavorites(state, favorites) {
+      state.favorites = favorites;
     },
     //SECTION Array Mutations
     setResource(state, payload) {
@@ -59,6 +63,14 @@ export default new Vuex.Store({
         // } else {
         //   router.push({ name: "Swipe" });
         // }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getFavorites({ commit }) {
+      try {
+        let res = await api.get("profile/favorites");
+        commit("setFavorites", res.data);
       } catch (error) {
         console.error(error);
       }

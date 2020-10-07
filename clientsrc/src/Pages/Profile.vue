@@ -1,27 +1,11 @@
 <template>
-  <div class="profile text-center">
-    <h3 class="m-2">
-      <b> Welcome to PetPals {{ profile.name }}!</b>
-    </h3>
-    <img
-      v-show="profile.search.cat == false && profile.search.dog == false"
-      class="rounded shadow-lg cat-pic"
-      src="https:/png.pngtree.com/png-vector/20190330/ourlarge/pngtree-continuous-line-drawing-of-minimalist-cat-animals-png-image_895421.jpg"
-      alt="cat"
-    />
-    <img
-      v-show="profile.search.cat == true"
-      class="rounded shadow-lg cat-pic"
-      src="https:/png.pngtree.com/png-vector/20190330/ourlarge/pngtree-continuous-line-drawing-of-minimalist-cat-animals-png-image_895421.jpg"
-      alt="cat"
-    />
-    <img
-      v-show="profile.search.dog == true"
-      class="rounded shadow-lg dog-pic"
-      src="https://cdn.shopify.com/s/files/1/0017/9578/4765/products/299_1200x1200.jpg?v=1563980443"
-      alt="dog"
-    />
-    <div class="profile-card card shadow-lg">
+  <div class="container-fluid">
+    <div class="col-12 text-center">
+      <h3 class="m-2">
+        <b> Welcome to PetPals {{ profile.name }}!</b>
+      </h3>
+    </div>
+    <div class="col-12 profile-card card shadow-lg text-center">
       <h3>
         Profile Information
         <i
@@ -43,21 +27,34 @@
         (Not affiliated with any organization)
       </p>
     </div>
-    <!-- FIXME <OrganizationComp
+    <div class="col-12 card fav-pets-card text-center">
+      <h3>Favorite Animals</h3>
+      <br />
+      <favorite-animals-comp
+        v-for="favAnimal in favoriteAnimals"
+        :key="favAnimal.animalId"
+        :favAnimalProp="favAnimal"
+      />
+      <!-- NOTE <OrganizationComp
       class="org-card text-center card"
       v-show="profile.hasOrg == true"
-    /> // FIXME ROUGH DRAFT COMPS NOT DONE //-->
-    <!--FIXME <FavroitePetsComp v-show="profile.favanimals.value" class="fav-pets-card text-center card"  v-for="favAnimal in favAnimals" :key="favAnimal.animalId" :favAnimalProp="favAnimal"/> -->
+    /> // ROUGH DRAFT COMPS NOT DONE //-->
+    </div>
+
   </div>
 </template>
 
 <script>
 import OrganizationComp from "../components/OrganizationComp.vue";
-import FavoritePetsComp from "../components/FavoritePetsComp.vue";
+import FavoriteAnimalsComp from "../components/FavoriteAnimalsComp.vue";
 export default {
   name: "Profile",
   mounted() {
     this.$store.dispatch("getProfile", this.$route.params.profile);
+    this.$store.dispatch(
+      "getFavorites",
+      this.$route.params.profile + "/favorites"
+    );
   },
   date() {
     return {
@@ -67,6 +64,9 @@ export default {
   computed: {
     profile() {
       return this.$store.state.profile;
+    },
+    favoriteAnimals() {
+      return this.$store.state.favorites;
     },
   },
   methods: {
@@ -81,7 +81,7 @@ export default {
   },
   components: {
     OrganizationComp,
-    // FavoritePetsComp, NOTE UNCOMMENT ME
+    FavoriteAnimalsComp,
   },
 };
 </script>
@@ -89,22 +89,17 @@ export default {
 <style scoped>
 .profile-card {
   margin-top: 3vh;
-  margin-left: 4vw;
   width: 92vw;
   padding: 10px;
   border-radius: 25px;
   /* background: #569dde; // NOTE neumorphic styling example commented out //
   box-shadow: 22px 22px 44px #3e71a0, -22px -22px 44px #6ec9ff; */
 }
-.cat-pic {
-  width: 60vw;
-  margin-top: 2vh;
-  border-radius: 25%;
-}
-.dog-pic {
-  width: 60vw;
-  margin-top: 2vh;
-  border-radius: 25%;
+.fav-pets-card {
+  margin-top: 3vh;
+  width: 92vw;
+  padding-top: 5px;
+  border-radius: 25px;
 }
 .profile {
   height: 80vh;
