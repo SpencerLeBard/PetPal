@@ -16,20 +16,35 @@
         <p class="text-light mt-5 font-24" v-if="question === 3">
           Would you like to see cats, dogs, or both?
         </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 justify-content-center">
         <form class="form reposition" @submit.prevent="getStarted">
           <transition
             enter-active-class="animated fadeInRight"
             leave-active-class="animated fadeOutLeft"
             mode="out-in"
           >
-            <div class="p-3 form-container rounded" v-if="question === 1">
-              <input
-                required
-                type="text"
-                class="form-control"
-                v-model="profileInfo.name"
-                placeholder="First/last name..."
-              />
+            <div class="p-2 form-container rounded" v-if="question === 1">
+              <div class="form-row d-flex justify-content-between">
+                <button type="button" class="btn  " @click="previousQuestion">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn " @click="nextQuestion">
+                  Next
+                  <i class="fa fa-arrow-right " aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="form-row">
+                <input
+                  required
+                  type="text"
+                  class="form-control mt-2"
+                  v-model="profileInfo.name"
+                  placeholder="First/last name..."
+                />
+              </div>
             </div>
 
             <select
@@ -121,17 +136,12 @@
           </transition>
 
           <div class="div nextBtn">
-            <button
-              type="button"
-              v-if="this.question <= 3"
-              class="btn btn-warning"
-              @click="nextQuestion"
-            >
+            <button type="button" class="btn btn-warning" @click="nextQuestion">
               Next
               <i class="fa fa-arrow-right" aria-hidden="true"></i>
             </button>
             <button
-              v-else-if="this.question >= 4"
+              v-if="this.question >= 4"
               type="submit"
               class="btn btn-warning"
             >
@@ -173,6 +183,9 @@ export default {
   methods: {
     nextQuestion() {
       this.question++;
+    },
+    previousQuestion() {
+      this.question--;
     },
     getStarted() {
       this.profileInfo.completedQuiz = true;
