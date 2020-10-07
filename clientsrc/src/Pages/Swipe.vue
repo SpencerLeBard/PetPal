@@ -68,6 +68,7 @@ export default {
       isVisible: true,
       interactLockSwipeUp: true,
       interactLockSwipeDown: true,
+      favAnimal: {},
     };
   },
   mounted() {},
@@ -114,11 +115,12 @@ export default {
     },
     likePet() {
       let activeAnimal = this.$store.state.activeAnimal;
-      let id = activeAnimal.id;
-      // this.$store.dispatch("addFavorite", {
-      //   path: "animals/favorite",
-      //   data: id,
-      // });
+      this.favAnimal.animalId = activeAnimal.id;
+      this.$store.dispatch("addFavorite", {
+        path: "profile/favorites",
+        data: this.favAnimal,
+        resource: "profile",
+      });
       console.log("i like this pet");
       this.nextPet();
     },
