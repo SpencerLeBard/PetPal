@@ -32,7 +32,7 @@
       <br />
       <favorite-animals-comp
         v-for="favAnimal in favoriteAnimals"
-        :key="favAnimal.animalId"
+        :key="favAnimal.animalId.id"
         :favAnimalProp="favAnimal"
       />
       <!-- NOTE <OrganizationComp
@@ -40,7 +40,6 @@
       v-show="profile.hasOrg == true"
     /> // ROUGH DRAFT COMPS NOT DONE //-->
     </div>
-
   </div>
 </template>
 
