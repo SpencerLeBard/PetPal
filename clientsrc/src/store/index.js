@@ -156,6 +156,14 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    // async addFavorite({dispatch}, payload){
+    //   try {
+    //     await api.post(payload.path, payload.data);
+
+    //   } catch (error) {
+
+    //   }
+    // },
     //!SECTION Array Methods
 
     //SECTION Dictionary Methods

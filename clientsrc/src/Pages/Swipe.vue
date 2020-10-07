@@ -6,6 +6,7 @@
       </div> -->
       <div>
         <Vue2InteractDraggable
+          v-hammer:swipe.left.right="onSwipe"
           v-if="isVisible"
           :interact-out-of-sight-x-coordinate="400"
           :interact-max-rotation="15"
@@ -16,7 +17,7 @@
           @draggedRight="right"
           @draggedLeft="left"
         >
-          <div class="swipe-card-component col-10">
+          <div class="swipe-card-component col-12">
             <div
               class="card m-2 d-flex"
               v-bind:style="{
@@ -110,6 +111,10 @@ export default {
     likePet() {
       let activeAnimal = this.$store.state.activeAnimal;
       let id = activeAnimal.id;
+      // this.$store.dispatch("addFavorite", {
+      //   path: "animals/favorite",
+      //   data: id,
+      // });
       console.log("i like this pet");
       this.nextPet();
     },
@@ -143,6 +148,9 @@ export default {
 };
 </script>
 <style scoped>
+.card {
+  width: 37vh;
+}
 .cardRow {
   height: 78vh;
 }
