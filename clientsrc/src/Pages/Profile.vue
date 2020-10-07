@@ -43,12 +43,11 @@
         (Not affiliated with any organization)
       </p>
     </div>
-    <!-- FIXME <OrganizationComp
+    <!-- NOTE <OrganizationComp
       class="org-card text-center card"
       v-show="profile.hasOrg == true"
-    /> // FIXME ROUGH DRAFT COMPS NOT DONE //-->
-    <!--FIXME <FavroitePetsComp v-show="profile.favanimals.value" class="fav-pets-card text-center card"  v-for="favAnimal in favAnimals" :key="favAnimal.animalId" :favAnimalProp="favAnimal"/> -->
-
+    /> // ROUGH DRAFT COMPS NOT DONE //-->
+    <!--NOTE <FavroitePetsComp v-show="profile.favAnimal.value" class="fav-pets-card text-center card"  v-for="favAnimal in favAnimals" :key="favAnimal.animalId" :favAnimalProp="favAnimal"/> -->
   </div>
 </template>
 
