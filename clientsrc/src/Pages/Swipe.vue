@@ -84,7 +84,7 @@ export default {
     },
   },
   watch: {
-    profile: function(userProfile) {
+    profile: function (userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
           path: "animals?contact.address.state=" + userProfile.search.state,
@@ -153,5 +153,9 @@ export default {
 }
 .fixed {
   position: fixed;
+}
+.swipe {
+  height: 80vh;
+  overflow-y: scroll;
 }
 </style>
