@@ -48,7 +48,6 @@
       v-show="profile.hasOrg == true"
     /> // FIXME ROUGH DRAFT COMPS NOT DONE //-->
     <!--FIXME <FavroitePetsComp v-show="profile.favanimals.value" class="fav-pets-card text-center card"  v-for="favAnimal in favAnimals" :key="favAnimal.animalId" :favAnimalProp="favAnimal"/> -->
-
   </div>
 </template>
 
@@ -106,5 +105,9 @@ export default {
   width: 60vw;
   margin-top: 2vh;
   border-radius: 25%;
+}
+.profile {
+  max-height: 80vh;
+  overflow-y: scroll;
 }
 </style>
