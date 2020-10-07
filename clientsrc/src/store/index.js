@@ -46,7 +46,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    setBearer({}, bearer) {
+    setBearer({ }, bearer) {
       api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
@@ -55,9 +55,7 @@ export default new Vuex.Store({
     async getProfile({ commit, dispatch, state }) {
       try {
         let res = await api.get("profile");
-        console.log(res);
         commit("setProfile", res.data);
-        console.log(res.data);
         // if (!res.data.completedQuiz) {
         //   router.push({ name: "Home" });
         // } else {
@@ -154,7 +152,7 @@ export default new Vuex.Store({
           parentId: payload.parentId,
           resource: payload.resource,
         });
-      } catch (error) {}
+      } catch (error) { }
     },
     async deleteDictionary({ dispatch }, payload) {
       try {
