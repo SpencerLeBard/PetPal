@@ -40,6 +40,7 @@
       v-show="profile.hasOrg == true"
     /> // ROUGH DRAFT COMPS NOT DONE //-->
     </div>
+
   </div>
 </template>
 
@@ -99,5 +100,9 @@ export default {
   width: 92vw;
   padding-top: 5px;
   border-radius: 25px;
+}
+.profile {
+  height: 80vh;
+  overflow-y: scroll;
 }
 </style>

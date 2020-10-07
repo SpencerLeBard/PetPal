@@ -168,8 +168,22 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    async addFavorite({ dispatch, commit }, payload) {
+      try {
+        await api.post(payload.path, payload.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
     //!SECTION Array Methods
 
     //SECTION Dictionary Methods
+    //SECTION Edge Cases
+    setActive({ commit }, data) {
+      commit("setResource", {
+        resource: "activeAnimal",
+        data: data,
+      });
+    },
   },
 });
