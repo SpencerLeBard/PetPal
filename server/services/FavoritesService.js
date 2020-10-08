@@ -9,8 +9,12 @@ class FavoritesService {
 
     async addFav(rawData) {
         if (rawData) {
-            let data = await dbContext.Favorites.create(rawData);
-            return data;
+            let found = await dbContext.Favorites.findOne({ creatorEmail: rawData.creatorEmail, animalId: rawData.animalId });
+            if (!found) {
+                let data = await dbContext.Favorites.create(rawData);
+                return data;
+            }
+            throw new BadRequest("you already have it favorited")
         } throw new BadRequest("Invalid Information Sent")
     }
 
