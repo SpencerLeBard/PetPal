@@ -1,13 +1,13 @@
 <template>
   <div class="container-fluid getStarted">
     <div class="row">
-      <div v-if="!profile.name">
+      <div v-if="!profile">
         <h2 class="text-center text-light mt-5">
           Please Login/SignUp And Save Lives!
         </h2>
       </div>
       <div
-        v-else-if="profile.name"
+        v-if="!profile.completedQuiz"
         class="col-12 d-flex flex-column text-center"
       >
         <div class="div" v-if="question === 0">
@@ -54,11 +54,11 @@
                   <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
-              <div class="form-row">
+              <div class="form-row d-flex justify-content-center">
                 <input
                   required
                   type="text"
-                  class="form-control mt-2"
+                  class="form-control w-75 mt-2"
                   v-model="profileInfo.name"
                   placeholder="First/last name..."
                 />
