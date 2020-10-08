@@ -12,7 +12,7 @@
           ><i class="fa fa-pencil text-warning " aria-hidden="true"></i
         ></span>
       </h3>
-      <!-- Modal for editing profile info -->
+      <!-- NOTE Modal for editing profile info -->
       <div
         class="modal fade"
         id="editProfileModal"
@@ -101,7 +101,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="modal-footer justify-content-center">
                 <button type="submit" class="btn btn-danger">Save</button>
               </div>
@@ -109,7 +108,7 @@
           </div>
         </div>
       </div>
-
+      <!-- NOTE profile info card  -->
       <p>Name: {{ profile.name }}</p>
       <p>Email: {{ profile.email }}</p>
       <p v-if="profile.search.city">City: {{ profile.search.city }}</p>
@@ -125,6 +124,7 @@
         (Not affiliated with any organization)
       </p>
     </div>
+    <!-- NOTE Favorite animals card -->
     <div class="col-12 card fav-pets-card text-center">
       <h3>Favorite Animals</h3>
       <favorite-animals-comp
@@ -132,7 +132,7 @@
         :key="favAnimal.animalId.id"
         :favAnimalProp="favAnimal"
       />
-      <!-- NOTE <OrganizationComp
+      <!-- NOTE injecting orgComp here // <OrganizationComp
       class="org-card text-center card"
       v-show="profile.hasOrg == true"-->
     </div>
