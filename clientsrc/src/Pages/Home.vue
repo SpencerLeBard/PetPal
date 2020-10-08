@@ -132,7 +132,7 @@
                 <button type="button" class="btn" @click="previousQuestion">
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
-                <button type="button" class="btn " @click="nextQuestion">
+                <button type="submit" class="btn">
                   Next
                   <i class="fa fa-arrow-right " aria-hidden="true"></i>
                 </button>
