@@ -229,7 +229,7 @@ export default {
   props: [""],
   components: {},
   watch: {
-    profile: function (userProfile) {
+    profile: function(userProfile) {
       if (userProfile.completedQuiz) {
         router.push({ name: "Swipe" });
       } else {

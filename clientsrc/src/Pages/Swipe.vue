@@ -18,7 +18,7 @@
       </div>
       <div class="col-12">
         <div class="row align-items-center justify-content-center cardRow">
-          <div>
+          <div v-if="this.activeAnimal">
             <Vue2InteractDraggable
               v-hammer:swipe.left.right="onSwipe"
               v-if="isVisible"
@@ -58,6 +58,24 @@
               </div>
             </Vue2InteractDraggable>
           </div>
+          <div v-else>
+            <div class="card">
+              <div class="card-body">
+                <h2>You've seen all the animals in your state!</h2>
+
+                <h4>
+                  Click below to look back through the animals you didn't
+                  favorite...
+                </h4>
+                <router-link class="text-light" :to="{ name: 'Home' }">
+                  <button class="btn btn-primary">
+                    Keep Swiping
+                    <i class="fa fa-paw fa-lg" aria-hidden="true"></i>
+                  </button>
+                </router-link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -89,10 +107,14 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("getResource", {
-      path: "animals?contact.address.state=" + userProfile.search.state,
-      resource: "animals",
-    });
+    // this.$store.dispatch("getResource", {
+    //   path: "animals?contact.address.state=" + userProfile.search.state,
+    //   resource: "animals",
+    // });
+    this.$store.dispatch(
+      "getFavorites",
+      this.$route.params.profile + "/favorites"
+    );
   },
 
   computed: {
@@ -110,7 +132,7 @@ export default {
     },
   },
   watch: {
-    profile: function (userProfile) {
+    profile: function(userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
           path: "animals?contact.address.state=" + userProfile.search.state,
@@ -124,9 +146,18 @@ export default {
         router.push({ name: "Home" });
       }
     },
-    animals: function (animals) {
-      if (animals[0].name) {
-        this.$store.dispatch("setActive", animals[0]);
+    animals: function(animals) {
+      let newAnimals = this.animals;
+      for (let a = 0; a < animals.length; a++) {
+        for (let f = 0; f < this.favorites.length; f++) {
+          let favorite = this.favorites[f];
+          if (favorite.animalId.id == newAnimals[a].id) {
+            newAnimals.splice(a, 1);
+          }
+        }
+      }
+      if (newAnimals[0].name) {
+        this.$store.dispatch("setActive", newAnimals[0]);
       } else {
         console.error("this aint working");
       }
@@ -142,6 +173,7 @@ export default {
       animals.shift();
       this.$store.dispatch("setActive", animals[0]);
     },
+
     likePet() {
       let activeAnimal = this.$store.state.activeAnimal;
       this.favAnimal.animalId = activeAnimal.id;
@@ -200,7 +232,7 @@ export default {
   font-size: 4rem;
 }
 .swipeArrow {
-  max-width: 3vw;
+  max-width: 49vw;
 }
 img {
   max-height: 5vh;

@@ -57,11 +57,9 @@ export default new Vuex.Store({
       try {
         let res = await api.get("profile");
         commit("setProfile", res.data);
-        // if (!res.data.completedQuiz) {
-        //   router.push({ name: "Home" });
-        // } else {
-        //   router.push({ name: "Swipe" });
-        // }
+        if (!res.data.completedQuiz) {
+          router.push({ name: "Home" });
+        }
       } catch (error) {
         console.error(error);
       }
