@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid getStarted">
     <div class="row">
-      <div v-if="profile" class="col-12 d-flex flex-column text-center">
+      <div v-if="this.profile" class="col-12 d-flex flex-column text-center">
         <div class="div" v-if="question === 0">
           <p class="text-light mt-5 font-24">
             Welcome to PetPal! Lets grab some basic info before we find your new
@@ -19,8 +19,13 @@
           in?
         </p>
         <p class="text-light mt-5 font-24" v-if="question === 3">
-          Would you like to see cats, dogs, or both?
+          Select the types of pets you like
         </p>
+      </div>
+      <div v-if="!this.profile">
+        <h2 class="text-center text-light mt-5">
+          Please Login/SignUp And Save Lives!
+        </h2>
       </div>
     </div>
     <div class="row">
@@ -36,9 +41,9 @@
                 <button type="button" class="btn" @click="previousQuestion">
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
-                <button type="button" class="btn " @click="nextQuestion">
+                <button type="button" class="btn" @click="nextQuestion">
                   Next
-                  <i class="fa fa-arrow-right " aria-hidden="true"></i>
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
               <div class="form-row">
@@ -56,9 +61,9 @@
                 <button type="button" class="btn" @click="previousQuestion">
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
-                <button type="button" class="btn " @click="nextQuestion">
+                <button type="button" class="btn" @click="nextQuestion">
                   Next
-                  <i class="fa fa-arrow-right " aria-hidden="true"></i>
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
               <select
@@ -133,58 +138,53 @@
                 </button>
                 <button type="submit" class="btn">
                   Next
-                  <i class="fa fa-arrow-right " aria-hidden="true"></i>
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
               <div class="form-row d-flex justify-content-around">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    v-model="profileInfo.dog"
-                    value="true"
-                    id="dogCheck"
-                  />
-                  <label class="form-check-label" for="defaultCheck1">
-                    Dogs
-                  </label>
+                <div class="col-5">
+                  <div class="div animal-btn rounded">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input sr-only"
+                        type="checkbox"
+                        v-model="profileInfo.cat"
+                        value="true"
+                        id="catCheck"
+                      />
+                      <label class="form-check-label" for="catCheck">
+                        <img
+                          src="../assets/cat-stock.jpg"
+                          class="img-fluid rounded"
+                        />
+                      </label>
+                    </div>
+                  </div>
                 </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    v-model="profileInfo.cat"
-                    value=""
-                    id="catCheck"
-                  />
-                  <label class="form-check-label" for="defaultCheck2">
-                    Cats
-                  </label>
+                <div class="col-5">
+                  <div class="div animal-btn rounded">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input sr-only"
+                        type="checkbox"
+                        v-model="profileInfo.dog"
+                        value=""
+                        id="dogCheck"
+                      />
+                      <label class="form-check-label" for="dogCheck">
+                        <img
+                          src="../assets/dog-stock.jpg"
+                          class="img-fluid rounded"
+                        />
+                      </label>
+                    </div>
+                  </div>
                 </div>
+                <div class="col-4"></div>
               </div>
             </div>
           </transition>
-
-          <div class="div nextBtn">
-            <!-- <button type="button" class="btn btn-warning" @click="nextQuestion">
-              Next
-              <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </button> -->
-            <button
-              v-if="this.question >= 4"
-              type="submit"
-              class="btn btn-warning"
-            >
-              Next
-              <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </button>
-          </div>
         </form>
-      </div>
-      <div v-else>
-        <h2 class="text-center text-light mt-5">
-          Please Login/SignUp And Save Lives!
-        </h2>
       </div>
     </div>
   </div>
@@ -231,6 +231,16 @@ export default {
     previousQuestion() {
       this.question--;
     },
+    petPreference(num) {
+      if (num === 1) {
+        this.profileInfo.cat = "Cat";
+      } else if (num === 2) {
+        this.profileInfo.dog = "Dog";
+      } else {
+        this.profileInfo.cat = "Cat";
+        this.profileInfo.dog = "Dog";
+      }
+    },
     getStarted() {
       if (this.profileInfo.cat) {
         this.profileInfo.cat = "Cat";
@@ -239,12 +249,7 @@ export default {
         this.profileInfo.dog = "Dog";
       }
       this.profileInfo.completedQuiz = true;
-      if (this.profileInfo.cat) {
-        this.profileInfo.cat = "Cat";
-      }
-      if (this.profileInfo.dog) {
-        this.profileInfo.dog = "Dog";
-      }
+
       this.profileInfo.search = {
         cat: this.profileInfo.cat,
         dog: this.profileInfo.dog,
@@ -294,5 +299,16 @@ export default {
 
 .form-container {
   background-color: rgba(255, 255, 255, 0.63);
+}
+
+.animal-btn {
+  transition: 0.1s;
+}
+.animal-btn:active {
+  cursor: pointer;
+  transform: scale(0.9);
+}
+input[type="checkbox"]:checked + label {
+  box-shadow: 0px 0px 10px #ff8800;
 }
 </style>
