@@ -5,7 +5,7 @@
         class="fav-pets text-center justify-content-center col-12 card shadow-lg p-2"
       >
         <router-link
-          class="text-dark"
+          class="text-primary"
           :to="{
             name: 'PetDetails',
             params: { id: favAnimalProp.animalId.id },
@@ -41,10 +41,13 @@ export default {
 .fav-pets img {
   max-width: 35vh;
   max-height: 30vh;
-  border-radius: 25px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.61) 5px 5px 15px;
 }
 .fav-pets {
-  border-radius: 25px;
   margin: 5px;
+  border-radius: 25px;
+  background: #ffffffb0;
+  box-shadow: 20px 20px 60px #9c9c9c, -20px -20px 60px #ffffff;
 }
 </style>

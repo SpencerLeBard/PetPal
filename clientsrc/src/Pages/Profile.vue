@@ -2,14 +2,14 @@
   <div class="profile container-fluid">
     <div class="col-12 text-center">
       <h3 class="m-2">
-        <b> Welcome to PetPals {{ profile.name }}!</b>
+        <b> Welcome to PetPal {{ profile.name }}!</b>
       </h3>
     </div>
     <div class="col-12 profile-card card shadow-lg text-center">
       <h3>
         Profile Information
         <span data-toggle="modal" data-target="#editProfileModal"
-          ><i class="fa fa-pencil text-warning " aria-hidden="true"></i
+          ><i class="fa fa-pencil text-warning" aria-hidden="true"></i
         ></span>
       </h3>
       <!-- NOTE Modal for editing profile info -->
@@ -124,9 +124,11 @@
         (Not affiliated with any organization)
       </p>
     </div>
+    <br />
     <!-- NOTE Favorite animals card -->
-    <div class="col-12 card fav-pets-card text-center">
+    <div class="col-12 fav-pets-card text-center">
       <h3>Favorite Animals</h3>
+      <br />
       <favorite-animals-comp
         v-for="favAnimal in favoriteAnimals"
         :key="favAnimal.animalId.id"
@@ -205,8 +207,8 @@ export default {
   width: 92vw;
   padding: 10px;
   border-radius: 25px;
-  /* background: #569dde; // NOTE neumorphic styling example commented out //
-  box-shadow: 22px 22px 44px #3e71a0, -22px -22px 44px #6ec9ff; */
+  background: #ffffffee;
+  box-shadow: 20px 20px 60px #9c9c9c, -20px -20px 60px #ffffff;
 }
 .fav-pets-card {
   margin-top: 3vh;
@@ -217,5 +219,6 @@ export default {
 .profile {
   height: 80vh;
   overflow-y: scroll;
+  background-color: rgb(247, 244, 241);
 }
 </style>
