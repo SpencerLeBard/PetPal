@@ -18,7 +18,7 @@
       </div>
       <div class="col-12">
         <div class="row align-items-center justify-content-center cardRow">
-          <div>
+          <div v-if="this.activeAnimal">
             <Vue2InteractDraggable
               v-hammer:swipe.left.right="onSwipe"
               v-if="isVisible"
@@ -57,6 +57,24 @@
                 </div>
               </div>
             </Vue2InteractDraggable>
+          </div>
+          <div v-else>
+            <div class="card">
+              <div class="card-body">
+                <h2>You've seen all the animals in your state!</h2>
+
+                <h4>
+                  Click below to look back through the animals you didn't
+                  favorite...
+                </h4>
+                <router-link class="text-light" :to="{ name: 'Home' }">
+                  <button class="btn btn-primary">
+                    Keep Swiping
+                    <i class="fa fa-paw fa-lg" aria-hidden="true"></i>
+                  </button>
+                </router-link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
