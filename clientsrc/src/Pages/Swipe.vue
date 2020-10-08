@@ -1,57 +1,68 @@
 <template>
   <div class="swipe container-fluid" v-if="profile.id">
-    <div class="row align-items-center justify-content-center cardRow">
-      <div class="col-1 text-left p-0">
-        <img src="../assets/brokenheart.png" alt="" />
+    <div class="row">
+      <div
+        class="col-12 d-flex justify-content-around align-items-center mt-4 mb-2"
+      >
+        <div class="text-left p-0">
+          <img src="../assets/brokenheart.png" @click="nextPet" alt="" />
+        </div>
+
+        <div class="text-left p-0">
+          <img src="../assets/arrow.png" class="swipeArrow" alt="" />
+        </div>
+
+        <div class="text-left p-0">
+          <img src="../assets/heart.png" @click="likePet" alt="" />
+        </div>
       </div>
-      <div>
-        <Vue2InteractDraggable
-          v-hammer:swipe.left.right="onSwipe"
-          v-if="isVisible"
-          :interact-out-of-sight-x-coordinate="400"
-          :interact-max-rotation="15"
-          :interact-x-threshold="200"
-          :interact-y-threshold="200"
-          :interact-lock-swipe-down="interactLockSwipeDown"
-          :interact-lock-swipe-up="interactLockSwipeUp"
-          @draggedRight="right"
-          @draggedLeft="left"
-        >
-          <div class="swipe-card-component col-10">
-            <div
-              class="card m-2 d-flex"
-              v-bind:style="{
-                backgroundColor: 'black',
-                backgroundImage:
-                  'url(' + this.activeAnimal.photos[0].full + ')',
-                backgroundSize: 'contain',
-                backgroundPosition: 'center center',
-                backgroundRepeat: 'no-repeat',
-                height: '56vh',
-              }"
+      <div class="col-12">
+        <div class="row align-items-center justify-content-center cardRow">
+          <div>
+            <Vue2InteractDraggable
+              v-hammer:swipe.left.right="onSwipe"
+              v-if="isVisible"
+              :interact-out-of-sight-x-coordinate="330"
+              :interact-max-rotation="15"
+              :interact-lock-swipe-down="interactLockSwipeDown"
+              :interact-lock-swipe-up="interactLockSwipeUp"
+              @draggedRight="right"
+              @draggedLeft="left"
             >
-              <div
-                class="card-body d-flex align-items-end"
-                v-bind:style="{
-                  color: 'Linen',
-                  fontSize: '18pt',
-                  textShadow: '1px 1px black',
-                }"
-              >
-                {{ this.activeAnimal.name }}, {{ this.activeAnimal.age }}
-                <br />
-                {{ this.activeAnimal.gender }}
+              <div class="swipe-card-component col-10">
+                <div
+                  class="card m-2 d-flex"
+                  v-bind:style="{
+                    backgroundColor: 'black',
+                    backgroundImage:
+                      'url(' + this.activeAnimal.photos[0].full + ')',
+                    backgroundSize: 'contain',
+                    backgroundPosition: 'center center',
+                    backgroundRepeat: 'no-repeat',
+                    height: '56vh',
+                  }"
+                >
+                  <div
+                    class="card-body d-flex align-items-end"
+                    v-bind:style="{
+                      color: 'Linen',
+                      fontSize: '18pt',
+                      textShadow: '1px 1px black',
+                    }"
+                  >
+                    {{ this.activeAnimal.name }}, {{ this.activeAnimal.age }}
+                    <br />
+                    {{ this.activeAnimal.gender }}
+                  </div>
+                </div>
               </div>
-            </div>
+            </Vue2InteractDraggable>
           </div>
-        </Vue2InteractDraggable>
-      </div>
-      <div class="col-1 text-left p-0">
-        <img src="../assets/heart.png" alt="" />
+        </div>
       </div>
     </div>
   </div>
-  <sectionv v-else class="container-fluid swipe">
+  <section v-else class="container-fluid swipe">
     <article class="row">
       <div
         class="col-12 d-flex justify-content-center flex-wrap align-content-center swipe"
@@ -59,11 +70,11 @@
         <i class="paw-loading fa fa-paw fa-spin" aria-hidden="true"></i>
       </div>
     </article>
-  </sectionv>
+  </section>
 </template>
 
 <script>
-import SwipeCardComp from "../components/SwipeCardComp.vue";
+// import SwipeCardComp from "../components/SwipeCardComp.vue";
 import { Vue2InteractDraggable } from "vue2-interact";
 import { onAuth } from "@bcwdev/auth0-vue";
 import router from "../router";
@@ -157,7 +168,7 @@ export default {
     },
   },
   components: {
-    SwipeCardComp,
+    // SwipeCardComp,
     Vue2InteractDraggable,
   },
 };
@@ -167,7 +178,7 @@ export default {
   width: 37vh;
 }
 .cardRow {
-  height: 78vh;
+  height: 65vh;
 }
 .fixed {
   position: fixed;
@@ -179,7 +190,10 @@ export default {
 .paw-loading {
   font-size: 4rem;
 }
+.swipeArrow {
+  max-width: 3vw;
+}
 img {
-  max-height: 4vh;
+  max-height: 5vh;
 }
 </style>

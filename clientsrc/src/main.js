@@ -32,5 +32,5 @@ new Vue({
 // @ts-ignore
 Vue.use(VueHammer);
 VueHammer.config.swipe = {
-  threshold: 200,
+  threshold: 180,
 };
