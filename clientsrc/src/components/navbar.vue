@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row bg-dark text-light navbartop d-flex align-items-center">
       <div class="col-6 d-flex justify-content-center align-items-center">
-        <h2><i class="fa fa-paw fa-lg" aria-hidden="true"></i>PetPal</h2>
+        <h2><img src="../assets/PetPal.png" class="logo" alt="" />PetPal</h2>
       </div>
       <div class="col-6 d-flex justify-content-end">
         <button
@@ -43,6 +43,9 @@ export default {
 
 <style>
 .navbartop {
+  height: 10vh;
+}
+.logo {
   height: 10vh;
 }
 </style>

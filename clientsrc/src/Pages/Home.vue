@@ -181,7 +181,7 @@
           </div>
         </form>
       </div>
-      <div v-else>
+      <div>
         <h2 class="text-center text-light mt-5">
           Please Login/SignUp And Save Lives!
         </h2>
@@ -216,7 +216,7 @@ export default {
   props: [""],
   components: {},
   watch: {
-    profile: function (userProfile) {
+    profile: function(userProfile) {
       if (userProfile.completedQuiz) {
         router.push({ name: "Swipe" });
       } else {
