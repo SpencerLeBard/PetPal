@@ -1,13 +1,13 @@
 <template>
   <div class="container-fluid getStarted">
     <div class="row">
-      <div v-if="!profile">
+      <div v-if="!profile.name">
         <h2 class="text-center text-light mt-5">
           Please Login/SignUp And Save Lives!
         </h2>
       </div>
       <div
-        v-if="!profile.completedQuiz"
+        v-if="profile.completedQuiz"
         class="col-12 d-flex flex-column text-center"
       >
         <div class="div" v-if="question === 0">
