@@ -1,7 +1,15 @@
 <template>
   <div class="container-fluid getStarted">
     <div class="row">
-      <div v-if="this.profile" class="col-12 d-flex flex-column text-center">
+      <div v-if="!profile.name">
+        <h2 class="text-center text-light mt-5">
+          Please Login/SignUp And Save Lives!
+        </h2>
+      </div>
+      <div
+        v-else-if="profile.name"
+        class="col-12 d-flex flex-column text-center"
+      >
         <div class="div" v-if="question === 0">
           <p class="text-light mt-5 font-24">
             Welcome to PetPal! Lets grab some basic info before we find your new
@@ -22,21 +30,21 @@
           Select the types of pets you like
         </p>
       </div>
-      <div v-if="!this.profile">
-        <h2 class="text-center text-light mt-5">
-          Please Login/SignUp And Save Lives!
-        </h2>
-      </div>
     </div>
     <div class="row">
       <div class="col-12 justify-content-center">
         <form class="form reposition" @submit.prevent="getStarted">
           <transition
+            appear
             enter-active-class="animated fadeInRight"
             leave-active-class="animated fadeOutLeft"
             mode="out-in"
           >
-            <div class="p-2 form-container rounded" v-if="question === 1">
+            <div
+              class="p-2 form-container rounded"
+              v-if="question === 1"
+              key="name"
+            >
               <div class="form-row d-flex justify-content-between">
                 <button type="button" class="btn" @click="previousQuestion">
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -56,7 +64,11 @@
                 />
               </div>
             </div>
-            <div class="p-2 form-container rounded" v-if="question === 2">
+            <div
+              class="p-2 form-container rounded"
+              v-if="question === 2"
+              key="states"
+            >
               <div class="form-row d-flex justify-content-between mb-2">
                 <button type="button" class="btn" @click="previousQuestion">
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -131,6 +143,7 @@
               class="p-2 form-container rounded"
               id="checkboxes"
               v-if="question === 3"
+              key="animal"
             >
               <div class="form-row d-flex justify-content-between mb-2">
                 <button type="button" class="btn" @click="previousQuestion">
