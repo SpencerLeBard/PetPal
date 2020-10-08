@@ -51,7 +51,7 @@
       </div>
     </div>
   </div>
-  <sectionv v-else class="container-fluid swipe">
+  <section v-else class="container-fluid swipe">
     <article class="row">
       <div
         class="col-12 d-flex justify-content-center flex-wrap align-content-center swipe"
@@ -59,7 +59,7 @@
         <i class="paw-loading fa fa-paw fa-spin" aria-hidden="true"></i>
       </div>
     </article>
-  </sectionv>
+  </section>
 </template>
 
 <script>
@@ -77,7 +77,12 @@ export default {
       favAnimal: {},
     };
   },
-  mounted() {},
+  mounted() {
+    this.$store.dispatch("getResource", {
+      path: "animals?contact.address.state=" + userProfile.search.state,
+      resource: "animals",
+    });
+  },
 
   computed: {
     activeAnimal() {
@@ -94,17 +99,21 @@ export default {
     },
   },
   watch: {
-    profile: function(userProfile) {
+    profile: function (userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
           path: "animals?contact.address.state=" + userProfile.search.state,
+          // "&species=" +
+          // userProfile.search.cat +
+          // "&speciees=" +
+          // userProfile.search.dog,
           resource: "animals",
         });
       } else {
         router.push({ name: "Home" });
       }
     },
-    animals: function(animals) {
+    animals: function (animals) {
       if (animals[0].name) {
         this.$store.dispatch("setActive", animals[0]);
       } else {

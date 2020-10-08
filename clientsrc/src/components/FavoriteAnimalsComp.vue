@@ -1,17 +1,22 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="fav-pets text-center justify-content-center col-12">
+      <div
+        class="fav-pets text-center justify-content-center col-12 card shadow-lg p-2"
+      >
         <router-link
+          class="text-dark"
           :to="{
             name: 'PetDetails',
             params: { id: favAnimalProp.animalId.id },
           }"
         >
-          <p>{{ favAnimalProp.animalId.name }}</p>
-
+          <p>
+            {{ favAnimalProp.animalId.name }}
+          </p>
           <img :src="favAnimalProp.animalId.photos[0].full" alt="pet" />
         </router-link>
+        <br />
       </div>
     </div>
   </div>
@@ -36,5 +41,10 @@ export default {
 .fav-pets img {
   max-width: 35vh;
   max-height: 30vh;
+  border-radius: 25px;
+}
+.fav-pets {
+  border-radius: 25px;
+  margin: 5px;
 }
 </style>

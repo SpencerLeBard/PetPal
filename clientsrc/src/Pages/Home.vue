@@ -11,7 +11,6 @@
             Let's Get Started!
           </button>
         </div>
-
         <p class="text-light mt-5 font-24" v-if="question === 1">
           What's your name?
         </p>
@@ -182,6 +181,11 @@
           </div>
         </form>
       </div>
+      <div v-else>
+        <h2 class="text-center text-light mt-5">
+          Please Login/SignUp And Save Lives!
+        </h2>
+      </div>
     </div>
   </div>
 </template>
@@ -211,6 +215,15 @@ export default {
   },
   props: [""],
   components: {},
+  watch: {
+    profile: function (userProfile) {
+      if (userProfile.completedQuiz) {
+        router.push({ name: "Swipe" });
+      } else {
+        return;
+      }
+    },
+  },
   methods: {
     nextQuestion() {
       this.question++;
@@ -219,6 +232,12 @@ export default {
       this.question--;
     },
     getStarted() {
+      if (this.profileInfo.cat) {
+        this.profileInfo.cat = "Cat";
+      }
+      if (this.profileInfo.dog) {
+        this.profileInfo.dog = "Dog";
+      }
       this.profileInfo.completedQuiz = true;
       if (this.profileInfo.cat) {
         this.profileInfo.cat = "Cat";
@@ -237,7 +256,6 @@ export default {
         data: this.profileInfo,
         resource: "profile",
       });
-      this.profile.search.state = this.profileInfo.state;
       router.push({ name: "Swipe" });
     },
   },
