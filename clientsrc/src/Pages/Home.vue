@@ -270,20 +270,23 @@ export default {
       if (this.profileInfo.dog) {
         this.profileInfo.dog = "Dog";
       }
-      this.profileInfo.completedQuiz = true;
 
       this.profileInfo.search = {
         cat: this.profileInfo.cat,
         dog: this.profileInfo.dog,
         state: this.profileInfo.state,
       };
-      this.$store.dispatch("edit", {
-        getPath: "profile",
-        path: "profile/" + this.profile.id,
-        data: this.profileInfo,
-        resource: "profile",
-      });
-      router.push({ name: "Swipe" });
+      if (this.profileInfo.name != "" && this.profileInfo.state != "") {
+        this.profileInfo.completedQuiz = true;
+
+        this.$store.dispatch("edit", {
+          getPath: "profile",
+          path: "profile/" + this.profile.id,
+          data: this.profileInfo,
+          resource: "profile",
+        });
+        router.push({ name: "Swipe" });
+      }
     },
   },
 };
