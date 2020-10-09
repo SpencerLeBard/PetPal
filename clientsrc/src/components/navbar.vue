@@ -46,6 +46,6 @@ export default {
   height: 10vh;
 }
 .logo {
-  height: 10vh;
+  height: 8vh;
 }
 </style>
