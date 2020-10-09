@@ -50,9 +50,9 @@
                       textShadow: '1px 1px black',
                     }"
                   >
-                    {{ this.activeAnimal.name }}, {{ this.activeAnimal.age }}
+                    {{ this.activeAnimal.name }}
                     <br />
-                    {{ this.activeAnimal.gender }}
+                    {{ this.activeAnimal.age }}, {{ this.activeAnimal.gender }}
                   </div>
                 </div>
               </div>
@@ -64,12 +64,11 @@
                 <h2>You've seen all the animals in your state!</h2>
 
                 <h4>
-                  Click below to look back through the animals you didn't
-                  favorite...
+                  Click below to look into adopting some of your favorites!
                 </h4>
-                <router-link class="text-light" :to="{ name: 'Home' }">
+                <router-link class="text-light" :to="{ name: 'Profile' }">
                   <button class="btn btn-primary">
-                    Keep Swiping
+                    Profile
                     <i class="fa fa-paw fa-lg" aria-hidden="true"></i>
                   </button>
                 </router-link>
