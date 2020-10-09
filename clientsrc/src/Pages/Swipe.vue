@@ -107,10 +107,16 @@ export default {
     };
   },
   mounted() {
-    // this.$store.dispatch("getResource", {
-    //   path: "animals?contact.address.state=" + userProfile.search.state,
-    //   resource: "animals",
-    // });
+    this.$store.dispatch("getResource", {
+      path:
+        "animals?contact.address.state=" +
+        this.$store.state.profile.search.state +
+        "&species=" +
+        this.$store.state.profile.search.cat +
+        "&speciees=" +
+        this.$store.state.profile.search.dog,
+      resource: "animals",
+    });
     this.$store.dispatch(
       "getFavorites",
       this.$route.params.profile + "/favorites"
@@ -135,11 +141,14 @@ export default {
     profile: function(userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
-          path: "animals?contact.address.state=" + userProfile.search.state,
-          // "&species=" +
-          // userProfile.search.cat +
-          // "&speciees=" +
-          // userProfile.search.dog,
+          path:
+            "animals?contact.address.state=" +
+            userProfile.search.state +
+            "&species=" +
+            userProfile.search.cat +
+            "&species=" +
+            userProfile.search.dog,
+
           resource: "animals",
         });
       } else {
