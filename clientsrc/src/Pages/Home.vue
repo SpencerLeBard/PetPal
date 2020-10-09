@@ -49,7 +49,12 @@
                 <button type="button" class="btn" @click="previousQuestion">
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
-                <button type="button" class="btn" @click="nextQuestion">
+                <button
+                  type="button"
+                  v-if="profileInfo.name.length > 0"
+                  class="btn"
+                  @click="nextQuestion"
+                >
                   Next
                   <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
@@ -73,7 +78,12 @@
                 <button type="button" class="btn" @click="previousQuestion">
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
-                <button type="button" class="btn" @click="nextQuestion">
+                <button
+                  type="button"
+                  v-if="profileInfo.state.length > 0"
+                  class="btn"
+                  @click="nextQuestion"
+                >
                   Next
                   <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
