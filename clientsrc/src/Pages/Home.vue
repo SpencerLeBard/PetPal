@@ -33,7 +33,11 @@
     </div>
     <div class="row">
       <div class="col-12 justify-content-center">
-        <form class="form reposition" @submit.prevent="getStarted">
+        <form
+          onkeypress="return event.keyCode != 13"
+          class="form reposition"
+          @submit.prevent="getStarted"
+        >
           <transition
             appear
             enter-active-class="animated fadeInRight"
