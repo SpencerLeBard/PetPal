@@ -108,10 +108,8 @@ export default new Vuex.Store({
     },
     async delete({ dispatch }, payload) {
       try {
-        dispatch("getResource", {
-          path: payload.path,
-          resource: payload.resource,
-        });
+        await api.delete(payload.deletePath);
+        router.push({ name: "Profile" });
       } catch (error) {
         console.error(error);
       }
