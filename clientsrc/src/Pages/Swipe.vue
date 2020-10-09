@@ -57,7 +57,7 @@
                     v-bind:style="{
                       color: 'Linen',
                       fontSize: '18pt',
-                      textShadow: '1px 1px black',
+                      textShadow: '2px 2px black',
                     }"
                   >
                     {{ this.activeAnimal.name }}
