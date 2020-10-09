@@ -235,5 +235,9 @@ export default {
 }
 img {
   max-height: 5vh;
+  text-shadow: 2px 2px;
+}
+img:active {
+  transform: translateY(2px);
 }
 </style>
