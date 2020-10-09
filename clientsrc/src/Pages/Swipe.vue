@@ -5,7 +5,12 @@
         class="col-12 d-flex justify-content-around align-items-center mt-4 mb-2"
       >
         <div class="text-left p-0">
-          <img src="../assets/brokenheart.png" @click="nextPet" alt="" />
+          <img
+            src="../assets/brokenheart.png"
+            class="heartButton"
+            @click="nextPet"
+            alt=""
+          />
         </div>
 
         <div class="text-left p-0">
@@ -13,7 +18,12 @@
         </div>
 
         <div class="text-left p-0">
-          <img src="../assets/heart.png" @click="likePet" alt="" />
+          <img
+            src="../assets/heart.png"
+            class="heartButton"
+            @click="likePet"
+            alt=""
+          />
         </div>
       </div>
       <div class="col-12">
@@ -29,11 +39,11 @@
               @draggedRight="right"
               @draggedLeft="left"
             >
-              <div class="swipe-card-component col-10">
+              <div class="col-10">
                 <div
                   class="card m-2 d-flex"
                   v-bind:style="{
-                    backgroundColor: 'black',
+                    backgroundColor: '#0b4c55',
                     backgroundImage:
                       'url(' + this.activeAnimal.photos[0].full + ')',
                     backgroundSize: 'contain',
@@ -59,15 +69,18 @@
             </Vue2InteractDraggable>
           </div>
           <div v-else>
-            <div class="card">
+            <div class="card bg-dark p-2 text-light">
               <div class="card-body">
                 <h2>You've seen all the animals in your state!</h2>
 
                 <h4>
                   Click below to look into adopting some of your favorites!
                 </h4>
-                <router-link class="text-light" :to="{ name: 'Profile' }">
-                  <button class="btn btn-primary">
+                <router-link
+                  class="text-light d-flex justify-content-center"
+                  :to="{ name: 'Profile' }"
+                >
+                  <button class="btn btn-danger">
                     Profile
                     <i class="fa fa-paw fa-lg" aria-hidden="true"></i>
                   </button>
@@ -110,6 +123,7 @@ export default {
     //   path: "animals?contact.address.state=" + userProfile.search.state,
     //   resource: "animals",
     // });
+    this.$store.dispatch("getProfile", this.$route.params.profile);
     this.$store.dispatch(
       "getFavorites",
       this.$route.params.profile + "/favorites"
@@ -233,11 +247,10 @@ export default {
 .swipeArrow {
   max-width: 49vw;
 }
-img {
+.heartButton {
   max-height: 5vh;
-  text-shadow: 2px 2px;
 }
-img:active {
+.heartButton:active {
   transform: translateY(2px);
 }
 </style>
