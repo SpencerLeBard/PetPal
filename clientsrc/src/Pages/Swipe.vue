@@ -107,10 +107,12 @@ export default {
     };
   },
   mounted() {
-    // this.$store.dispatch("getResource", {
-    //   path: "animals?contact.address.state=" + userProfile.search.state,
-    //   resource: "animals",
-    // });
+    this.$store.dispatch("getResource", {
+      path:
+        "animals?contact.address.state=" +
+        this.$store.state.profile.search.state,
+      resource: "animals",
+    });
     this.$store.dispatch(
       "getFavorites",
       this.$route.params.profile + "/favorites"
@@ -132,7 +134,7 @@ export default {
     },
   },
   watch: {
-    profile: function(userProfile) {
+    profile: function (userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
           path: "animals?contact.address.state=" + userProfile.search.state,
@@ -146,7 +148,7 @@ export default {
         router.push({ name: "Home" });
       }
     },
-    animals: function(animals) {
+    animals: function (animals) {
       let newAnimals = this.animals;
       for (let a = 0; a < animals.length; a++) {
         for (let f = 0; f < this.favorites.length; f++) {

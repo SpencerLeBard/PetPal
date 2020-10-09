@@ -7,7 +7,7 @@
         </h2>
       </div>
       <div
-        v-if="profile.completedQuiz"
+        v-if="profile.name && !profile.completedQuiz"
         class="col-12 d-flex flex-column text-center"
       >
         <div class="div" v-if="question === 0">
@@ -208,7 +208,16 @@ import router from "../router";
 import ns from "../Services/NotificationService";
 export default {
   name: "",
-  mounted() {},
+  mounted() {
+    this.$store.dispatch("getProfile", {
+      getPath: "profile",
+      path: "profile/",
+      resource: "profile",
+    });
+    if (this.$store.state.profile.completed) {
+      router.push({ name: "Swipe" });
+    }
+  },
   data() {
     return {
       question: 0,
@@ -229,7 +238,7 @@ export default {
   props: [""],
   components: {},
   watch: {
-    profile: function(userProfile) {
+    profile: function (userProfile) {
       if (userProfile.completedQuiz) {
         router.push({ name: "Swipe" });
       } else {
