@@ -41,26 +41,26 @@
                 class="form-control w-75 my-2 ml-5"
                 type="text"
                 placeholder="Your name... "
-                v-model="profileData.name"
+                v-model="profile.name"
                 required
               />
               <input
                 class="form-control w-75 my-2 ml-5"
                 type="text"
                 placeholder="City..."
-                v-model="profileData.search.city"
+                v-model="profile.search.city"
               />
               <input
                 class="form-control w-75 my-2 ml-5"
                 type="text"
                 placeholder="State..."
-                v-model="profileData.search.state"
+                v-model="profile.search.state"
               />
               <input
                 class="form-control w-75 my-2 ml-5"
                 type="text"
                 placeholder="Zipcode..."
-                v-model="profileData.search.zip"
+                v-model="profile.search.zip"
               />
               <div class="form-row">
                 <div class="col-4 d-flex justify-content-end">
@@ -71,7 +71,7 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      v-model="profileData.search.dog"
+                      v-model="profile.search.dog"
                       value="true"
                       id="dogCheck"
                     />
@@ -88,7 +88,7 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      v-model="profileData.search.cat"
+                      v-model="profile.search.cat"
                       value=""
                       id="catCheck"
                     />
@@ -156,16 +156,6 @@ export default {
   data() {
     return {
       editToggle: true,
-      profileData: {
-        name: "",
-        search: {
-          cat: null,
-          dog: null,
-          city: "",
-          state: "",
-          zip: 12345,
-        },
-      },
     };
   },
   computed: {
@@ -178,16 +168,16 @@ export default {
   },
   methods: {
     editProfile() {
-      if (this.profileData.cat) {
-        this.profileData.cat = "Cat";
+      if (this.profile.search.cat) {
+        this.profile.search.cat = "Cat";
       }
-      if (this.profileInfo.dog) {
-        this.profileData.dog = "Dog";
+      if (this.profile.search.dog) {
+        this.profile.search.dog = "Dog";
       }
       this.$store.dispatch("edit", {
         getPath: "profile",
         path: "profile/" + this.profile.id,
-        data: this.profileData,
+        data: this.profile,
         resource: "profile",
       });
       $("#editProfileModal").hide();
