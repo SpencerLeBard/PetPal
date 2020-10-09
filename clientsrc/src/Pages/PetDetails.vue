@@ -180,7 +180,9 @@
                 Contact about Adoption
               </a>
 
-              <button class="btn btn-danger m-2">Remove from Favorite</button>
+              <button class="btn btn-danger m-2" @click="removeFavorite">
+                Remove from Favorite
+              </button>
             </article>
           </div>
         </div>
@@ -211,7 +213,13 @@ export default {
     },
   },
   watch: {},
-  methods: {},
+  methods: {
+    removeFavorite() {
+      this.$store.dispatch("delete", {
+        deletePath: "profile/favorites/" + this.$route.params.id,
+      });
+    },
+  },
   components: {},
 };
 </script>
