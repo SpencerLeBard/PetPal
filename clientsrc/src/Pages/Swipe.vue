@@ -119,8 +119,18 @@ export default {
     };
   },
   mounted() {
+
+    this.$store.dispatch("getProfile", {
+      getPath: "profile",
+      path: "profile/",
+      resource: "profile",
+    });
+    console.log(profile);
+    if (!this.$store.state.profile.completedQuiz) {
+      router.push({ name: "Home" });
+    }
     this.$store.dispatch("getResource", {
-      path:
+       path:
         "animals?contact.address.state=" +
         this.$store.state.profile.search.state +
         "&species=" +
@@ -150,7 +160,7 @@ export default {
     },
   },
   watch: {
-    profile: function(userProfile) {
+    profile: function (userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
           path:
@@ -167,7 +177,7 @@ export default {
         router.push({ name: "Home" });
       }
     },
-    animals: function(animals) {
+    animals: function (animals) {
       let newAnimals = this.animals;
       for (let a = 0; a < animals.length; a++) {
         for (let f = 0; f < this.favorites.length; f++) {

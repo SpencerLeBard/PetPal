@@ -7,7 +7,7 @@
         </h2>
       </div>
       <div
-        v-if="!profile.completedQuiz"
+        v-if="profile.name && !profile.completedQuiz"
         class="col-12 d-flex flex-column text-center"
       >
         <div class="div" v-if="question === 0">
@@ -33,7 +33,11 @@
     </div>
     <div class="row">
       <div class="col-12 justify-content-center">
-        <form class="form reposition" @submit.prevent="getStarted">
+        <form
+          onkeypress="return event.keyCode != 13"
+          class="form reposition"
+          @submit.prevent="getStarted"
+        >
           <transition
             appear
             enter-active-class="animated fadeInRight"
@@ -49,7 +53,12 @@
                 <button type="button" class="btn" @click="previousQuestion">
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
-                <button type="button" class="btn" @click="nextQuestion">
+                <button
+                  type="button"
+                  v-if="profileInfo.name.length > 0"
+                  class="btn"
+                  @click="nextQuestion"
+                >
                   Next
                   <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
@@ -73,7 +82,12 @@
                 <button type="button" class="btn" @click="previousQuestion">
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </button>
-                <button type="button" class="btn" @click="nextQuestion">
+                <button
+                  type="button"
+                  v-if="profileInfo.state.length > 0"
+                  class="btn"
+                  @click="nextQuestion"
+                >
                   Next
                   <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
@@ -208,7 +222,16 @@ import router from "../router";
 import ns from "../Services/NotificationService";
 export default {
   name: "",
-  mounted() {},
+  mounted() {
+    this.$store.dispatch("getProfile", {
+      getPath: "profile",
+      path: "profile/",
+      resource: "profile",
+    });
+    if (this.$store.state.profile.completed) {
+      router.push({ name: "Swipe" });
+    }
+  },
   data() {
     return {
       question: 0,
@@ -229,7 +252,7 @@ export default {
   props: [""],
   components: {},
   watch: {
-    profile: function(userProfile) {
+    profile: function (userProfile) {
       if (userProfile.completedQuiz) {
         router.push({ name: "Swipe" });
       } else {
@@ -261,20 +284,23 @@ export default {
       if (this.profileInfo.dog) {
         this.profileInfo.dog = "Dog";
       }
-      this.profileInfo.completedQuiz = true;
 
       this.profileInfo.search = {
         cat: this.profileInfo.cat,
         dog: this.profileInfo.dog,
         state: this.profileInfo.state,
       };
-      this.$store.dispatch("edit", {
-        getPath: "profile",
-        path: "profile/" + this.profile.id,
-        data: this.profileInfo,
-        resource: "profile",
-      });
-      router.push({ name: "Swipe" });
+      if (this.profileInfo.name != "" && this.profileInfo.state != "") {
+        this.profileInfo.completedQuiz = true;
+
+        this.$store.dispatch("edit", {
+          getPath: "profile",
+          path: "profile/" + this.profile.id,
+          data: this.profileInfo,
+          resource: "profile",
+        });
+        router.push({ name: "Swipe" });
+      }
     },
   },
 };
