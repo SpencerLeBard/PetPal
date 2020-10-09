@@ -107,6 +107,15 @@ export default {
     };
   },
   mounted() {
+    this.$store.dispatch("getProfile", {
+      getPath: "profile",
+      path: "profile/",
+      resource: "profile",
+    });
+    console.log(profile);
+    if (!this.$store.state.profile.completedQuiz) {
+      router.push({ name: "Home" });
+    }
     this.$store.dispatch("getResource", {
       path:
         "animals?contact.address.state=" +
