@@ -11,8 +11,9 @@
       <div
         class="swipe col-6 d-flex justify-content-center home-link align-items-center"
       >
-        <router-link class="text-light" :to="{ name: 'Swipe' }"
-          ><i class="fa fa-home text-light fa-3x" aria-hidden="true"></i>
+        <router-link class="text-light" :to="{ name: 'Swipe' }">
+          <img class="cardImg" src="../assets/cards.png" alt="" />
+          <!-- <i class="fa fa-home text-light fa-3x" aria-hidden="true"></i> -->
         </router-link>
       </div>
     </div>
@@ -34,5 +35,9 @@ export default {
 }
 .swipe {
   height: 10vh;
+}
+.cardImg {
+  max-height: 7vh;
+  color: white;
 }
 </style>

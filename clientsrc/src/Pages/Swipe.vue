@@ -5,7 +5,12 @@
         class="col-12 d-flex justify-content-around align-items-center mt-4 mb-2"
       >
         <div class="text-left p-0">
-          <img src="../assets/brokenheart.png" @click="nextPet" alt="" />
+          <img
+            src="../assets/brokenheart.png"
+            class="heartButton"
+            @click="nextPet"
+            alt=""
+          />
         </div>
 
         <div class="text-left p-0">
@@ -13,7 +18,12 @@
         </div>
 
         <div class="text-left p-0">
-          <img src="../assets/heart.png" @click="likePet" alt="" />
+          <img
+            src="../assets/heart.png"
+            class="heartButton"
+            @click="likePet"
+            alt=""
+          />
         </div>
       </div>
       <div class="col-12">
@@ -29,11 +39,11 @@
               @draggedRight="right"
               @draggedLeft="left"
             >
-              <div class="swipe-card-component col-10">
+              <div class="col-10">
                 <div
                   class="card m-2 d-flex"
                   v-bind:style="{
-                    backgroundColor: 'black',
+                    backgroundColor: '#0b4c55',
                     backgroundImage:
                       'url(' + this.activeAnimal.photos[0].full + ')',
                     backgroundSize: 'contain',
@@ -47,29 +57,31 @@
                     v-bind:style="{
                       color: 'Linen',
                       fontSize: '18pt',
-                      textShadow: '1px 1px black',
+                      textShadow: '2px 2px black',
                     }"
                   >
-                    {{ this.activeAnimal.name }}, {{ this.activeAnimal.age }}
+                    {{ this.activeAnimal.name }}
                     <br />
-                    {{ this.activeAnimal.gender }}
+                    {{ this.activeAnimal.age }}, {{ this.activeAnimal.gender }}
                   </div>
                 </div>
               </div>
             </Vue2InteractDraggable>
           </div>
           <div v-else>
-            <div class="card">
+            <div class="card bg-dark p-2 text-light">
               <div class="card-body">
                 <h2>You've seen all the animals in your state!</h2>
 
                 <h4>
-                  Click below to look back through the animals you didn't
-                  favorite...
+                  Click below to look into adopting some of your favorites!
                 </h4>
-                <router-link class="text-light" :to="{ name: 'Home' }">
-                  <button class="btn btn-primary">
-                    Keep Swiping
+                <router-link
+                  class="text-light d-flex justify-content-center"
+                  :to="{ name: 'Profile' }"
+                >
+                  <button class="btn btn-danger">
+                    Profile
                     <i class="fa fa-paw fa-lg" aria-hidden="true"></i>
                   </button>
                 </router-link>
@@ -107,6 +119,7 @@ export default {
     };
   },
   mounted() {
+
     this.$store.dispatch("getProfile", {
       getPath: "profile",
       path: "profile/",
@@ -117,9 +130,13 @@ export default {
       router.push({ name: "Home" });
     }
     this.$store.dispatch("getResource", {
-      path:
+       path:
         "animals?contact.address.state=" +
-        this.$store.state.profile.search.state,
+        this.$store.state.profile.search.state +
+        "&species=" +
+        this.$store.state.profile.search.cat +
+        "&speciees=" +
+        this.$store.state.profile.search.dog,
       resource: "animals",
     });
     this.$store.dispatch(
@@ -146,11 +163,14 @@ export default {
     profile: function (userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
-          path: "animals?contact.address.state=" + userProfile.search.state,
-          // "&species=" +
-          // userProfile.search.cat +
-          // "&speciees=" +
-          // userProfile.search.dog,
+          path:
+            "animals?contact.address.state=" +
+            userProfile.search.state +
+            "&species=" +
+            userProfile.search.cat +
+            "&species=" +
+            userProfile.search.dog,
+
           resource: "animals",
         });
       } else {
@@ -245,7 +265,10 @@ export default {
 .swipeArrow {
   max-width: 49vw;
 }
-img {
+.heartButton {
   max-height: 5vh;
+}
+.heartButton:active {
+  transform: translateY(2px);
 }
 </style>
