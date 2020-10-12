@@ -71,10 +71,10 @@
           <div v-else>
             <div class="card bg-dark p-2 text-light">
               <div class="card-body">
-                <h2>You've seen all the animals in your state!</h2>
+                <h2>You've seen all the animals in your area!</h2>
 
                 <h4>
-                  Click below to look into adopting some of your favorites!
+                  Click below for more information on your favorites!
                 </h4>
                 <router-link
                   class="text-light d-flex justify-content-center"
@@ -119,7 +119,6 @@ export default {
     };
   },
   mounted() {
-
     this.$store.dispatch("getProfile", {
       getPath: "profile",
       path: "profile/",
@@ -130,7 +129,7 @@ export default {
       router.push({ name: "Home" });
     }
     this.$store.dispatch("getResource", {
-       path:
+      path:
         "animals?contact.address.state=" +
         this.$store.state.profile.search.state +
         "&species=" +
@@ -160,16 +159,15 @@ export default {
     },
   },
   watch: {
-    profile: function (userProfile) {
+    profile: function(userProfile) {
       if (userProfile.search.state) {
         this.$store.dispatch("getResource", {
-          path:
-            "animals?contact.address.state=" +
-            userProfile.search.state +
-            "&species=" +
-            userProfile.search.cat +
-            "&species=" +
-            userProfile.search.dog,
+          path: "animals?contact.address.state=" + userProfile.search.state,
+          // +
+          // "&species=" +
+          // userProfile.search.cat +
+          // "&species=" +
+          // userProfile.search.dog,
 
           resource: "animals",
         });
@@ -177,7 +175,7 @@ export default {
         router.push({ name: "Home" });
       }
     },
-    animals: function (animals) {
+    animals: function(animals) {
       let newAnimals = this.animals;
       for (let a = 0; a < animals.length; a++) {
         for (let f = 0; f < this.favorites.length; f++) {
