@@ -2,4 +2,6 @@ README
 
 # Home Sign In
 
-<img src="Home.PNG" alt="home" />
+<div class = "text-center">
+<img class="img-responsive" src="Home.PNG" alt="home" />
+<div>
