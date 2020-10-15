@@ -1,7 +1,9 @@
 README
 
-# Home
+PetPals is a platform to
 
-<div class = "text-center">
-<img class="img-responsive" src="./assets/Home.PNG" alt="home" />
-<div>
+### Home/Login
+
+![Screenshot](./assets/Home.png)
+
+<img src="./assets/logo.png" alt="My cool logo"/>
