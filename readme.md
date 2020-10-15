@@ -1,7 +1,7 @@
 README
 
-# Home Sign In
+# Home
 
 <div class = "text-center">
-<img class="img-responsive" src="Home.PNG" alt="home" />
+<img class="img-responsive" src="./assets/Home.PNG" alt="home" />
 <div>
