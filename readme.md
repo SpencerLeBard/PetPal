@@ -5,6 +5,6 @@ PetPals is a platform to connect homeless pets with individuals interested in ad
 
 ### Home/Login
 
-![Login]()
+![Login](https://raw.githubusercontent.com/SpencerLeBard/PetPal/dev/clientsrc/src/assets/Home.PNG)
 
 
