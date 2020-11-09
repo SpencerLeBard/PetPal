@@ -11,4 +11,7 @@ Once logged in, you are presented with a swipeable card where you can choose to 
 
 ![Swipe Page](https://raw.githubusercontent.com/SpencerLeBard/PetPal/dev/clientsrc/src/assets/Swipe%20Page.PNG)
 
+Once you have swiped right onan animal, you will be presented with your custom profile and favorite animals 
+
+![Profile](https://raw.githubusercontent.com/SpencerLeBard/PetPal/dev/clientsrc/src/assets/Profile.PNG)
 
