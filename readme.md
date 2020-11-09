@@ -7,4 +7,8 @@ PetPals is a platform to connect homeless pets with individuals interested in ad
 
 ![Login](https://raw.githubusercontent.com/SpencerLeBard/PetPal/dev/clientsrc/src/assets/Home.PNG)
 
+Once logged in, you are presented with a swipeable card where you can choose to swipe left - if you are not interested in adopting - or right - if you would like to learn more about the animal 
+
+![Swipe Page](https://raw.githubusercontent.com/SpencerLeBard/PetPal/dev/clientsrc/src/assets/Swipe%20Page.PNG)
+
 
