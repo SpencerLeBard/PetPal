@@ -2,7 +2,7 @@
 https://petpal7.herokuapp.com/
 
 Full-stack application that utilizes Humane Society's API data and helps connect homeless animals with people looking to rescue a cat or dog.
-Ability to save favorited animals and connect with adoption agency.
+Ability to save favorite animals and connect with adoption agency.
 
 ### Home/Login
 
@@ -15,13 +15,13 @@ Once logged in, you are presented with a swipeable card where you can choose to 
 ![Swipe Page](https://raw.githubusercontent.com/SpencerLeBard/PetPal/dev/clientsrc/src/assets/Swipe%20Page.PNG)
 
 
-Once you have swiped right onan animal, you will be presented with your custom profile and favorite animals 
+Once you have swiped right on a animal, you will be presented with your custom profile and favorite animals list
 
 
 ![Profile](https://raw.githubusercontent.com/SpencerLeBard/PetPal/dev/clientsrc/src/assets/Profile.PNG)
 
 
-Click on a favorited animal, and you can find out more details, or contact an adoption agency
+Click on a favorite animal and you can find out more details, or contact an adoption agency
 
 
 ![Details](https://raw.githubusercontent.com/SpencerLeBard/PetPal/dev/clientsrc/src/assets/Details2.PNG)
